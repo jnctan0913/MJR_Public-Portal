@@ -1,9 +1,16 @@
 'use client'
 
+import { useEffect } from 'react'
 import Script from 'next/script'
+import { initializeGoogleConsent } from '@/lib/consent'
 
 export default function GoogleAnalytics() {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
+  useEffect(() => {
+    // Initialize consent mode with default "denied" state before GA loads
+    initializeGoogleConsent()
+  }, [])
 
   if (!GA_MEASUREMENT_ID) {
     return null
