@@ -27,12 +27,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_SG',
     siteName: 'Obesity Is A Disease',
+    images: [
+      {
+        url: '/images/hero-resistance-bands.png',
+        width: 1200,
+        height: 630,
+        alt: 'Obesity Is A Disease | DKSH SG',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Obesity Is A Disease | DKSH SG',
     description: 'It\'s time for a mindset shift about weight loss. Discover why weight loss is challenging and how to achive lasting result & improved well-being.',
+    images: ['/images/hero-resistance-bands.png'],
   },
+  metadataBase: new URL('https://mjr-public-portal.vercel.app'),
 }
 
 export default function RootLayout({
