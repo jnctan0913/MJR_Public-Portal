@@ -54,7 +54,7 @@ export default function Header() {
           <div className="flex items-center gap-8">
             {/* DKSH Icon */}
             <Image
-              src="/images/DKSH-ICON.png"
+              src="/images/DKSH-icon.png"
               alt="DKSH"
               width={80}
               height={77}
