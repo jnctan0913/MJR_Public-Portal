@@ -89,16 +89,16 @@ export default function BMISection() {
   }
 
   return (
-    <section id="bmi-section" ref={sectionRef} className="relative bg-dksh-light-pink py-16 z-10 overflow-hidden">
-      <div className={`max-w-[1600px] mx-auto px-20 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+    <section id="bmi-section" ref={sectionRef} className="relative bg-dksh-light-pink py-8 md:py-12 lg:py-16 z-10 overflow-hidden">
+      <div className={`max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
         <div className="max-w-[1504px] mx-auto">
           {/* Main Heading */}
-          <h2 className="text-5xl font-bold text-dksh-black mb-8 font-poppins">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dksh-black mb-6 md:mb-8 font-poppins">
             Are you living with obesity?
           </h2>
 
           {/* Subheading */}
-          <h3 className="text-3xl font-bold text-dksh-black mb-6 font-poppins">
+          <h3 className="text-2xl md:text-3xl font-bold text-dksh-black mb-4 md:mb-6 font-poppins">
             Body Mass Index (BMI) and Obesity
           </h3>
 
@@ -108,20 +108,20 @@ export default function BMISection() {
           </p>
 
           {/* Calculator Heading */}
-          <h3 className="text-3xl font-bold text-dksh-black mb-8 font-poppins">
+          <h3 className="text-2xl md:text-3xl font-bold text-dksh-black mb-6 md:mb-8 font-poppins">
             Check your BMI and health risks
           </h3>
 
           {/* BMI Calculator Grid */}
-          <div className="grid gap-12 mt-8" style={{ gridTemplateColumns: '5fr 4fr' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[5fr_4fr] gap-6 md:gap-8 lg:gap-12 mt-6 md:mt-8">
             {/* Left Column - Calculator with integrated results */}
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg h-[440px] flex flex-col">
+            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-4 md:p-6 lg:p-8 shadow-lg h-auto lg:h-[440px] flex flex-col">
               <h2 className="text-xl font-bold text-center mb-3 font-poppins text-dksh-black tracking-wide">
                 BMI Calculator
               </h2>
               <div className="w-full h-0.5 bg-dksh-black mb-5"></div>
 
-              <div className="grid gap-8 items-center flex-1" style={{ gridTemplateColumns: '1fr 2fr' }}>
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-4 md:gap-6 lg:gap-8 items-center flex-1">
                 {/* Left: Input Fields */}
                 <div className="flex flex-col">
                   {/* Height Input */}
@@ -186,7 +186,7 @@ export default function BMISection() {
                   <div className="flex gap-3">
                     <button
                       onClick={calculateBMI}
-                      className="flex-[3] bg-dksh-red text-white py-[10px] rounded-button text-lg font-semibold font-poppins hover:bg-dksh-dark-red transition-colors duration-300 ease-out"
+                      className="flex-[3] bg-dksh-red text-white py-3 md:py-[10px] rounded-button text-base md:text-lg font-semibold font-poppins hover:bg-dksh-dark-red transition-colors duration-300 ease-out min-h-[44px] touch-manipulation"
                     >
                       Calculate BMI
                     </button>
@@ -198,7 +198,7 @@ export default function BMISection() {
                         setCategory('')
                         setRisk('')
                       }}
-                      className="flex-1 bg-dksh-red text-white py-[10px] rounded-button text-lg font-semibold font-poppins hover:bg-dksh-dark-red transition-colors duration-300 ease-out flex items-center justify-center"
+                      className="flex-1 bg-dksh-red text-white py-3 md:py-[10px] rounded-button text-base md:text-lg font-semibold font-poppins hover:bg-dksh-dark-red transition-colors duration-300 ease-out flex items-center justify-center min-h-[44px] min-w-[44px] touch-manipulation"
                       title="Reset Calculator"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -349,41 +349,41 @@ export default function BMISection() {
             </div>
 
             {/* Right Column - BMI Categories Table */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg h-[440px] flex flex-col">
-              <h3 className="text-xl font-bold text-dksh-black mb-5 font-poppins text-center">
+            <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8 shadow-lg h-auto lg:h-[440px] flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold text-dksh-black mb-4 md:mb-5 font-poppins text-center">
                 BMI Categories and Health Risks
               </h3>
-              
-              <div className="flex-1 flex flex-col justify-between px-4">
+
+              <div className="flex-1 flex flex-col justify-between px-2 md:px-4">
               <table className="w-full">
                 <thead>
                   <tr className="border-b-2 border-dksh-black">
-                    <th className="text-left py-3 px-2 text-base font-bold text-dksh-black font-poppins">BMI</th>
-                    <th className="text-left py-3 px-2 text-base font-bold text-dksh-black font-poppins">Category</th>
-                    <th className="text-left py-3 px-2 text-base font-bold text-dksh-black font-poppins">Risk of health problems</th>
+                    <th className="text-left py-2 md:py-3 px-1 md:px-2 text-sm md:text-base font-bold text-dksh-black font-poppins">BMI</th>
+                    <th className="text-left py-2 md:py-3 px-1 md:px-2 text-sm md:text-base font-bold text-dksh-black font-poppins">Category</th>
+                    <th className="text-left py-2 md:py-3 px-1 md:px-2 text-sm md:text-base font-bold text-dksh-black font-poppins">Risk of health problems</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className={`border-b border-gray-300 transition-all ${category === 'Normal' ? 'bg-green-100 font-bold' : ''}`}>
-                    <td className="py-3 px-2 text-base text-dksh-black font-poppins">18.5 – 22.9</td>
-                    <td className="py-3 px-2 text-base font-semibold text-dksh-black font-poppins">Normal</td>
-                    <td className="py-3 px-2 text-base text-dksh-black font-poppins">Low risk (healthy range)</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base text-dksh-black font-poppins">18.5 – 22.9</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base font-semibold text-dksh-black font-poppins">Normal</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base text-dksh-black font-poppins">Low risk (healthy range)</td>
                   </tr>
                   <tr className={`border-b border-gray-300 transition-all ${category === 'Overweight' ? 'bg-orange-100 font-bold' : ''}`}>
-                    <td className="py-3 px-2 text-base text-dksh-black font-poppins">23.0 – 27.4</td>
-                    <td className="py-3 px-2 text-base font-semibold text-dksh-black font-poppins">Overweight</td>
-                    <td className="py-3 px-2 text-base text-dksh-black font-poppins">Moderate Risk</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base text-dksh-black font-poppins">23.0 – 27.4</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base font-semibold text-dksh-black font-poppins">Overweight</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base text-dksh-black font-poppins">Moderate Risk</td>
                   </tr>
                   <tr className={`transition-all ${category === 'Obese' ? 'bg-red-100 font-bold' : ''}`}>
-                    <td className="py-3 px-2 text-base text-dksh-black font-poppins">≥ 27.5</td>
-                    <td className="py-3 px-2 text-base font-semibold text-dksh-black font-poppins">Obese</td>
-                    <td className="py-3 px-2 text-base text-dksh-black font-poppins">High Risk</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base text-dksh-black font-poppins">≥ 27.5</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base font-semibold text-dksh-black font-poppins">Obese</td>
+                    <td className="py-2 md:py-3 px-1 md:px-2 text-sm md:text-base text-dksh-black font-poppins">High Risk</td>
                   </tr>
                 </tbody>
               </table>
 
-              <div className="mt-4 p-4 bg-gray-100 rounded-lg">
-                <p className="text-sm text-dksh-black font-poppins">
+              <div className="mt-3 md:mt-4 p-3 md:p-4 bg-gray-100 rounded-lg">
+                <p className="text-xs md:text-sm text-dksh-black font-poppins">
                   <strong>Note:</strong> BMI categories can differ depending on a person's ethnicity. Remember, your BMI is just one indicator for obesity—it is always best to talk with your doctor about it.
                 </p>
               </div>

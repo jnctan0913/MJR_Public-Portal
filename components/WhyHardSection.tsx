@@ -29,16 +29,16 @@ export default function WhyHardSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative bg-dksh-light-pink py-12 z-10 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-dksh-light-pink py-8 md:py-12 z-10 overflow-hidden">
       <div className={`w-full transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
-        <div className="bg-white py-12">
-          <div className="max-w-[1600px] mx-auto px-20">
-            <div className="grid grid-cols-2 gap-12 items-center">
+        <div className="bg-white py-8 md:py-12">
+          <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
               {/* Left Column - Text Content */}
               <div>
                 {/* Heading */}
-                <div className="mb-8">
-                  <h2 className="text-5xl text-dksh-black font-poppins">
+                <div className="mb-6 md:mb-8">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl text-dksh-black font-poppins">
                     <span className="font-bold">So, why is it so hard to loss weight?</span> <span className="font-normal">Because obesity is not a choice!</span>
                   </h2>
                 </div>
@@ -61,7 +61,7 @@ export default function WhyHardSection() {
 
               {/* Right Column - Video/GIF */}
               <div className="flex items-center justify-center">
-                <div className="w-[650px] h-[450px] rounded-3xl overflow-hidden shadow-lg">
+                <div className="w-full max-w-[650px] h-[300px] md:h-[400px] lg:h-[450px] rounded-3xl overflow-hidden shadow-lg">
                   <video
                     autoPlay
                     loop
