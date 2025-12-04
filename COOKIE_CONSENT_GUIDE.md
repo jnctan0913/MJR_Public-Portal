@@ -1,43 +1,44 @@
 # Cookie Consent Implementation Guide
-## Google Consent Mode v2 for Pharmaceutical Compliance
+## Singapore PDPA Compliance for Pharmaceutical Marketing
 
 ---
 
 ## 📋 Overview
 
-This implementation provides GDPR/PDPA/CCPA-compliant cookie consent management for pharmaceutical marketing, using Google Consent Mode v2.
+This implementation provides Singapore PDPA-compliant cookie notification for pharmaceutical marketing, using an **opt-out model**.
 
-### ✅ Compliance Features
-- **No tracking before consent** - GA4 only loads after user accepts
+### ✅ Singapore PDPA Compliance Features
+- **Opt-out model** - Tracking enabled by default (PDPA-compliant)
+- **Clear notification** - Users informed about cookie usage
+- **Easy opt-out** - Users can decline anytime
 - **IP anonymization** - User privacy protected
 - **2-year audit trail** - Meets regulatory requirements
 - **No advertising signals** - Pharma-compliant
-- **Consent storage** - Remembers user choice in localStorage
 - **Transparent disclosure** - Clear cookie information
+- **Less intrusive** - Bottom banner (not blocking)
 
 ---
 
 ## 🏗️ Implementation Components
 
 ### 1. **lib/consent.ts**
-Consent state management and Google Consent Mode integration
+Consent state management for Singapore PDPA (opt-out model)
 - `getConsentState()` - Retrieve stored consent
 - `saveConsentState()` - Save user choice
-- `updateGoogleConsent()` - Update GA4 consent
-- `initializeGoogleConsent()` - Initialize with "denied" default
+- `shouldEnableAnalytics()` - Check if tracking is allowed (defaults to true)
 
 ### 2. **components/CookieConsent.tsx**
-Cookie consent banner UI
-- Professional pharmaceutical-grade design
-- Accept / Decline / Show Details options
+Cookie notification banner UI (Singapore style)
+- Clean, non-intrusive bottom banner
+- Accept / Decline / Learn More options
 - Mobile-responsive
-- Appears 1 second after page load
+- Appears 1.5 seconds after page load
 
 ### 3. **components/GoogleAnalytics.tsx**
-GA4 integration with consent mode
-- Initializes consent mode before GA loads
-- Respects user consent choice
-- Compliance-friendly configuration
+GA4 integration with Singapore PDPA opt-out model
+- Loads by default (unless user declined)
+- Respects user opt-out choice
+- Singapore PDPA-compliant configuration
 
 ### 4. **lib/analytics.ts**
 Event tracking utilities (respects consent)
@@ -48,39 +49,39 @@ Event tracking utilities (respects consent)
 
 ---
 
-## 🎯 User Journey
+## 🎯 User Journey (Singapore PDPA Opt-Out Model)
 
-### First Visit (No Consent)
+### First Visit (No Prior Choice)
 1. User lands on site
-2. After 1 second, cookie banner appears
-3. **No tracking occurs** (consent mode = "denied")
-4. User sees: Accept All / Decline / Show Details
+2. **GA4 starts tracking immediately** (opt-out model)
+3. After 1.5 seconds, cookie notification banner appears (bottom)
+4. User sees: Accept / Decline / Learn More
 
 ### User Accepts
-1. User clicks "Accept All"
-2. Consent saved to localStorage
-3. Google Consent Mode updated to "granted"
-4. GA4 starts tracking
-5. Banner disappears
+1. User clicks "Accept"
+2. Choice saved to localStorage
+3. GA4 continues tracking
+4. Banner disappears
 
-### User Declines
+### User Declines (Opt-Out)
 1. User clicks "Decline"
-2. Consent saved as "declined" to localStorage
-3. Google Consent Mode remains "denied"
-4. **No tracking occurs**
+2. Decline choice saved to localStorage
+3. Page reloads to stop GA4
+4. **No tracking on future visits**
 5. Banner disappears
 
-### Return Visit
+### Return Visit (Already Decided)
 1. User lands on site
 2. System checks localStorage
-3. Applies stored consent automatically
-4. **No banner shown** (already decided)
+3. If accepted: GA4 loads, no banner
+4. If declined: No GA4, no banner
+5. **No banner shown** (choice already recorded)
 
 ---
 
 ## 🔍 What Gets Tracked
 
-### If User Accepts:
+### If User Accepts (or No Choice Yet - Default):
 ✅ Page views  
 ✅ BMI calculations  
 ✅ Video plays  
@@ -88,9 +89,9 @@ Event tracking utilities (respects consent)
 ✅ CTA clicks  
 ✅ User journey  
 
-### If User Declines:
+### If User Declines (Opts Out):
 ❌ No tracking whatsoever  
-❌ No cookies set  
+❌ No GA cookies set  
 ❌ Complete privacy  
 
 ---
@@ -156,28 +157,25 @@ localStorage.removeItem('cookie_consent_v1')
 
 ---
 
-## 🔐 Regulatory Compliance
+## 🔐 Singapore PDPA Compliance
 
-### GDPR (Europe)
-✅ Explicit consent before tracking  
-✅ Clear cookie information  
-✅ Easy opt-out  
-✅ Data minimization  
+### PDPA Requirements ✅
+✅ **Notification** - Users clearly informed about cookie usage  
+✅ **Purpose** - Analytics purpose clearly stated  
+✅ **Opt-out** - Easy decline mechanism provided  
+✅ **Transparency** - Cookie details available on request  
+✅ **Reasonable purposes** - Analytics is considered reasonable under PDPA  
 
-### PDPA (Singapore)
-✅ Transparent disclosure  
-✅ User control  
-✅ Purpose limitation  
+### Singapore Pharmaceutical Marketing ✅
+✅ **No advertising signals** - Ad features disabled  
+✅ **Audit trail** - 2-year data retention  
+✅ **IP anonymization** - Privacy protected  
+✅ **Transparent tracking** - Clear disclosure  
+✅ **HSA compliant** - Follows Health Sciences Authority guidelines
 
-### CCPA (California)
-✅ Opt-out mechanism  
-✅ Clear privacy notice  
-
-### Pharmaceutical Regulations
-✅ No advertising signals  
-✅ Audit trail (2 years)  
-✅ IP anonymization  
-✅ Transparent tracking  
+### Key Difference from GDPR
+🇸🇬 **Opt-out model** - Tracking allowed by default with opt-out option  
+🇪🇺 **Opt-in model** - Must get consent before tracking  
 
 ---
 

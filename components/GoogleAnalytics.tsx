@@ -1,18 +1,22 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Script from 'next/script'
-import { initializeGoogleConsent } from '@/lib/consent'
+import { getConsentState } from '@/lib/consent'
 
 export default function GoogleAnalytics() {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  const [shouldTrack, setShouldTrack] = useState(true) // Default to true for Singapore PDPA
 
   useEffect(() => {
-    // Initialize consent mode with default "denied" state before GA loads
-    initializeGoogleConsent()
+    // Check if user has explicitly declined (opt-out model for Singapore)
+    const consentState = getConsentState()
+    if (consentState && consentState.analytics === false) {
+      setShouldTrack(false)
+    }
   }, [])
 
-  if (!GA_MEASUREMENT_ID) {
+  if (!GA_MEASUREMENT_ID || !shouldTrack) {
     return null
   }
 
@@ -31,7 +35,7 @@ export default function GoogleAnalytics() {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             
-            // Configure GA4 with compliance-friendly settings for pharmaceutical marketing
+            // Configure GA4 with Singapore PDPA-compliant settings for pharmaceutical marketing
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
               anonymize_ip: true,  // IP anonymization for privacy compliance

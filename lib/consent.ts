@@ -1,5 +1,5 @@
-// Cookie Consent Management for Pharmaceutical Marketing Compliance
-// Complies with GDPR, PDPA, CCPA, and pharma regulations
+// Cookie Consent Management for Singapore PDPA Compliance
+// Opt-out model for Singapore pharmaceutical marketing
 
 export type ConsentState = {
   analytics: boolean
@@ -42,38 +42,17 @@ export const saveConsentState = (analytics: boolean): void => {
 }
 
 /**
- * Update Google Consent Mode
+ * Check if analytics should be enabled
+ * Singapore PDPA uses opt-out model (enabled by default unless user declines)
  */
-export const updateGoogleConsent = (analytics: boolean): void => {
-  if (typeof window === 'undefined' || !window.gtag) return
+export const shouldEnableAnalytics = (): boolean => {
+  const consentState = getConsentState()
   
-  window.gtag('consent', 'update', {
-    analytics_storage: analytics ? 'granted' : 'denied',
-    ad_storage: 'denied', // Always denied for pharma compliance
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-  })
-}
-
-/**
- * Initialize Google Consent Mode with default (denied) state
- */
-export const initializeGoogleConsent = (): void => {
-  if (typeof window === 'undefined') return
+  // If no consent state exists, default to enabled (Singapore opt-out model)
+  if (!consentState) return true
   
-  // Set default consent state (denied) before GA loads
-  window.gtag = window.gtag || function() {
-    (window as any).dataLayer = (window as any).dataLayer || []
-    ;(window as any).dataLayer.push(arguments)
-  }
-  
-  window.gtag('consent', 'default', {
-    analytics_storage: 'denied',
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-    wait_for_update: 500, // Wait 500ms for user consent
-  })
+  // Otherwise, respect user's choice
+  return consentState.analytics
 }
 
 declare global {
