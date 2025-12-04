@@ -21,6 +21,18 @@ export const metadata: Metadata = {
   icons: {
     icon: '/images/OIAD.png',
   },
+  openGraph: {
+    title: 'Obesity Is A Disease | DKSH SG',
+    description: 'It\'s time for a mindset shift about weight loss. Discover why weight loss is challenging and how to achive lasting result & improved well-being.',
+    type: 'website',
+    locale: 'en_SG',
+    siteName: 'Obesity Is A Disease',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Obesity Is A Disease | DKSH SG',
+    description: 'It\'s time for a mindset shift about weight loss. Discover why weight loss is challenging and how to achive lasting result & improved well-being.',
+  },
 }
 
 export default function RootLayout({
