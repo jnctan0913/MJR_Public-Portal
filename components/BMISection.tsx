@@ -113,17 +113,17 @@ export default function BMISection() {
           </h3>
 
           {/* BMI Calculator Grid */}
-          <div className="grid gap-12 mt-8" style={{ gridTemplateColumns: '3fr 2fr' }}>
+          <div className="grid gap-12 mt-8" style={{ gridTemplateColumns: '5fr 4fr' }}>
             {/* Left Column - Calculator with integrated results */}
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg h-[420px] flex flex-col">
-              <h2 className="text-xl font-bold text-center mb-4 font-poppins text-dksh-black tracking-wide">
-                BMI CALCULATOR
+            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg h-[440px] flex flex-col">
+              <h2 className="text-xl font-bold text-center mb-3 font-poppins text-dksh-black tracking-wide">
+                BMI Calculator
               </h2>
-              <div className="w-full h-0.5 bg-dksh-black mb-6"></div>
+              <div className="w-full h-0.5 bg-dksh-black mb-5"></div>
 
-              <div className="grid gap-8 items-start flex-1" style={{ gridTemplateColumns: '1fr 2fr' }}>
+              <div className="grid gap-8 items-center flex-1" style={{ gridTemplateColumns: '1fr 2fr' }}>
                 {/* Left: Input Fields */}
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col">
                   {/* Height Input */}
                   <div className="mb-4">
                     <label className="flex items-center gap-2 text-base font-poppins mb-2 text-dksh-black">
@@ -253,19 +253,19 @@ export default function BMISection() {
                           <div className="relative w-full h-full flex items-center justify-center">
                             {category === 'Normal' && (
                               <div className="text-center px-4">
-                                <div className="flex justify-center mb-2">
+                                <div className="flex justify-center mb-1.5">
                                   <Image
                                     src="/images/Normal_weight.png"
                                     alt="Normal Weight"
-                                    width={80}
-                                    height={80}
+                                    width={70}
+                                    height={70}
                                     className="object-contain"
                                   />
                                 </div>
                                 <h4 className="text-lg font-bold text-green-600 font-poppins mb-1">
                                   Normal Weight
                                 </h4>
-                                <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
+                                <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-2.5">
                                   Keep up the great work with balanced nutrition and regular physical activity.
                                 </p>
                                 <button className="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-green-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200">
@@ -349,8 +349,8 @@ export default function BMISection() {
             </div>
 
             {/* Right Column - BMI Categories Table */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg h-[420px] flex flex-col">
-              <h3 className="text-xl font-bold text-dksh-black mb-6 font-poppins text-center">
+            <div className="bg-white rounded-2xl p-8 shadow-lg h-[440px] flex flex-col">
+              <h3 className="text-xl font-bold text-dksh-black mb-5 font-poppins text-center">
                 BMI Categories and Health Risks
               </h3>
               

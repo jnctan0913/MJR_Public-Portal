@@ -58,16 +58,16 @@ export default function ImpactSection() {
           <div className={`flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto lg:mx-0 w-full transition-transform duration-500 ease-in-out ${showVideo ? '-translate-x-full opacity-0' : 'translate-x-0 opacity-100'}`}>
             {/* Text Content */}
             <div className="flex-1">
-              <p className="text-lg text-dksh-black font-poppins leading-relaxed mb-8">
+              <p className="text-[16px] text-dksh-black font-poppins mb-8">
                 Obesity isn't just about how you appear. It can lead to serious health risks, like high blood pressure, high cholesterol, and sleep disorders,<sup className="text-xs">3,7</sup> as well as an increased risk of developing heart disease, diabetes, and certain cancers.<sup className="text-xs">3,7</sup> It has also been linked to impaired fertility.<sup className="text-xs">11</sup> Beyond physical health, it can impact your mental well-being<sup className="text-xs">8</sup> and relationships.<sup className="text-xs">12</sup>
               </p>
               
-              <div className="bg-dksh-light-gray/30 p-8 rounded-2xl border-l-4 border-dksh-red">
+              <div className="bg-gray-100 p-8 rounded-2xl border-l-4 border-dksh-red">
                 <h4 className="text-xl font-bold text-dksh-red font-poppins mb-3">
                   But you are not alone.
                 </h4>
-                <p className="text-lg text-dksh-black font-poppins leading-relaxed">
-                  Many others share your experience, and their stories can support you on your way forward.<sup className="text-xs">2,5</sup>
+                <p className="text-[16px] text-dksh-black font-poppins">
+                  Many others share your experience, and their stories can support you on your way forward. <sup className="text-xs">2,5</sup>
                 </p>
               </div>
             </div>
