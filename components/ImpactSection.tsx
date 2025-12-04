@@ -105,10 +105,10 @@ export default function ImpactSection() {
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/leLBfBPkkhI?autoplay=1&muted=1&playsinline=1&rel=0"
+                  src="https://www.youtube.com/embed/leLBfBPkkhI?autoplay=1&mute=1&playsinline=1&controls=1&rel=0&modestbranding=1&enablejsapi=1"
                   title="YouTube video player"
                   frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="w-full h-full object-cover"
                 ></iframe>

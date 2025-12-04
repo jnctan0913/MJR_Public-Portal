@@ -144,9 +144,9 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
             <iframe
               key={`video-${videoKey}`}
               className="w-full h-full border-0"
-              src="https://www.youtube.com/embed/leLBfBPkkhI?autoplay=1&muted=1&playsinline=1&enablejsapi=1"
+              src="https://www.youtube.com/embed/leLBfBPkkhI?autoplay=1&mute=1&playsinline=1&controls=1&rel=0&modestbranding=1&enablejsapi=1"
               title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
           )}
