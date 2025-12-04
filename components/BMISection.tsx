@@ -93,7 +93,7 @@ export default function BMISection() {
       <div className={`max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
         <div className="max-w-[1504px] mx-auto">
           {/* Main Heading */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dksh-black mb-6 md:mb-8 font-poppins">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dksh-black mb-6 md:mb-8 font-poppins text-center md:text-left">
             Are you living with obesity?
           </h2>
 

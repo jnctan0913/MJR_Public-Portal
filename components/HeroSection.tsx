@@ -26,32 +26,46 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
   useEffect(() => {
     if (!isVideoPlaying) return
 
+    // Only enable auto-close on desktop (lg breakpoint and above)
+    const isDesktop = window.innerWidth >= 1024
+    if (!isDesktop) return
+
     const mainContentSection = document.getElementById('main-content-section')
     if (!mainContentSection) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // If main content section is becoming visible, close the video
-        if (entry.isIntersecting) {
-          setIsVideoPlaying(false)
-          onVideoPlay?.(false)
+    let observer: IntersectionObserver | null = null
+
+    // Add a delay to prevent immediate closure when video opens
+    const timer = setTimeout(() => {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          // If main content section is becoming visible, close the video
+          if (entry.isIntersecting) {
+            setIsVideoPlaying(false)
+            onVideoPlay?.(false)
+          }
+        },
+        {
+          threshold: 0.1, // Trigger when 10% of the main content section is visible
         }
-      },
-      {
-        threshold: 0.1, // Trigger when 10% of the main content section is visible
+      )
+
+      observer.observe(mainContentSection)
+    }, 1000) // Wait 1 second before starting to monitor scroll
+
+    return () => {
+      clearTimeout(timer)
+      if (observer) {
+        observer.disconnect()
       }
-    )
-
-    observer.observe(mainContentSection)
-
-    return () => observer.disconnect()
+    }
   }, [isVideoPlaying, onVideoPlay])
 
   return (
     <section
       ref={sectionRef}
-      className={`sticky top-0 bg-white w-full overflow-hidden z-0 transition-all duration-700 ${
-        isVideoPlaying ? 'h-screen' : 'h-[802px]'
+      className={`fixed left-0 bg-white w-screen overflow-hidden transition-all duration-700 ${
+        isVideoPlaying ? 'top-0 z-50 h-screen' : 'top-[60px] md:top-[90px] lg:top-[80px] z-0 h-[calc(100vw*4/3)] md:h-[calc(100vw*802/1600)] lg:h-[calc(100vw*802/1600)]'
       }`}
     >
       {/* Container for both slides - moves horizontally */}
@@ -61,32 +75,47 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
         }`}
       >
         {/* First Slide - Hero Image */}
-        <div className="relative w-1/2 h-full">
-          <div className="absolute inset-0">
+        <div className="relative w-1/2 h-full overflow-hidden">
+          {/* Mobile Hero Image */}
+          <div className="absolute inset-0 w-full md:hidden pointer-events-none">
+            <Image
+              src="/images/hero-resistance-bands-mobile.png"
+              alt="Woman with obesity with resistance bands holding her in place attached to the words 'The Body Can Resist Weight Loss'"
+              fill
+              className="object-cover object-center"
+              priority
+              sizes="100vw"
+            />
+          </div>
+          
+          {/* Desktop Hero Image */}
+          <div className="absolute inset-0 hidden md:block pointer-events-none">
             <Image
               src="/images/hero-resistance-bands.png"
               alt="Woman with obesity with resistance bands holding her in place attached to the words 'The Body Can Resist Weight Loss'"
               fill
-              className="object-cover"
+              className="object-cover w-full h-full"
               priority
+              sizes="50vw"
             />
           </div>
 
           {/* Content Overlay */}
-          <div className="relative max-w-[1600px] mx-auto px-20 h-full flex items-center">
-            <div className="w-[752px]">
+          <div className="relative w-full md:max-w-[1600px] md:mx-auto md:px-10 lg:px-20 h-full flex items-center z-10 pointer-events-none">
+            <div className="w-full md:w-[752px] pointer-events-none">
               {/* This space is for content that would overlay the hero image if needed */}
             </div>
-
-            {/* Play Button positioned next to "Loss" */}
-            <button
-              onClick={handlePlayClick}
-              className="absolute top-[47%] right-[19%] w-16 h-16 rounded-full bg-dksh-yellow flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl group"
-              aria-label="Play video"
-            >
-              <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-white border-b-[12px] border-b-transparent ml-1 group-hover:border-l-dksh-red transition-colors duration-300"></div>
-            </button>
           </div>
+
+          {/* Play Button positioned next to "Loss" - scales with viewport to maintain position */}
+          <button
+            onClick={handlePlayClick}
+            type="button"
+            className="absolute top-[28%] right-[31%] w-[calc(100vw*48/375)] h-[calc(100vw*48/375)] md:top-[47.5%] md:right-[calc(100vw*320/1600)] lg:right-[calc(100vw*304/1600)] xl:right-[calc(100vw*328/1600)] md:w-[calc(100vw*64/1600)] md:h-[calc(100vw*64/1600)] rounded-full bg-dksh-yellow flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl group z-50 cursor-pointer touch-manipulation pointer-events-auto"
+            aria-label="Play video"
+          >
+            <div className="w-0 h-0 border-t-[calc(100vw*8/375)] border-t-transparent border-l-[calc(100vw*14/375)] border-l-white border-b-[calc(100vw*8/375)] border-b-transparent ml-1 md:border-t-[calc(100vw*12/1600)] md:border-l-[calc(100vw*20/1600)] md:border-b-[calc(100vw*12/1600)] group-hover:border-l-dksh-red transition-colors duration-300"></div>
+          </button>
         </div>
 
         {/* Second Slide - Video */}

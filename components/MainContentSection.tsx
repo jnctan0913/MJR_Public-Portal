@@ -19,9 +19,11 @@ export default function MainContentSection() {
           </p>
 
           {/* Button */}
-          <button className="min-w-button px-6 md:px-[41.6px] py-3 md:py-[10px] bg-dksh-red text-white text-base md:text-lg font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 ease-out min-h-[44px] touch-manipulation">
-            Learn more about obesity
-          </button>
+          <div className="flex justify-center md:justify-start">
+            <button className="min-w-button px-6 md:px-[41.6px] py-3 md:py-[10px] bg-dksh-red text-white text-base md:text-lg font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 ease-out min-h-[44px] touch-manipulation">
+              Learn more about obesity
+            </button>
+          </div>
         </div>
       </div>
     </section>

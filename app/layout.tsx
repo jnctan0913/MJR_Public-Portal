@@ -52,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${zillaSlab.variable} font-poppins`}>
+      <body className={`${poppins.variable} ${zillaSlab.variable} font-poppins overflow-x-hidden`}>
         {children}
       </body>
     </html>

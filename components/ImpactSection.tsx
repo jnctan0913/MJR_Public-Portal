@@ -34,22 +34,24 @@ export default function ImpactSection() {
       <div className={`flex flex-col lg:flex-row h-full relative transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Left Column - Pink Background with Text (35% width) */}
         <div className="bg-dksh-light-pink px-8 lg:px-20 py-16 lg:py-24 flex flex-col justify-center w-full lg:w-[35%] relative z-20">
-          <div className="max-w-xl mx-auto lg:mx-0">
-            <h2 className="text-5xl font-bold text-dksh-black font-poppins mb-8 leading-tight">
-              Obesity Can<br />Impact Lives
+          <div className="max-w-xl md:max-w-none mx-auto lg:mx-0">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dksh-black font-poppins mb-8 leading-tight text-center lg:text-left">
+              Obesity Can Impact Lives
             </h2>
             
-            <h3 className="text-xl font-bold text-dksh-black font-poppins mb-4 leading-tight tracking-wide">
+            <h3 className="text-xl font-bold text-dksh-black font-poppins mb-4 leading-tight tracking-wide text-center lg:text-left">
               Living with obesity is more than just a number on a scale—it can impact many aspects of life.
             </h3>
 
-            <p className="text-lg font-semibold text-dksh-black font-poppins mb-8">
+            <p className="text-lg font-semibold text-dksh-black font-poppins mb-8 text-center lg:text-left">
               Start your conversation with a doctor today!
             </p>
 
-            <button className="min-w-button px-[41.6px] py-[10px] bg-dksh-red text-white text-lg font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 ease-out">
-              Act Now!
-            </button>
+            <div className="flex justify-center lg:justify-start">
+              <button className="min-w-button px-[41.6px] py-[10px] bg-dksh-red text-white text-lg font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 ease-out">
+                Act Now!
+              </button>
+            </div>
           </div>
         </div>
 

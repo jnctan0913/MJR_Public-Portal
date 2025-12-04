@@ -3,10 +3,10 @@ import Image from 'next/image'
 export default function Footer() {
   return (
     <footer className="relative bg-dksh-off-white border-t border-[#afafaf] z-10">
-      <div className="max-w-[1600px] mx-auto px-20 py-14">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20 py-6 md:py-10 lg:py-14">
         <div className="max-w-[1504px] mx-auto">
           {/* Top Section - Product Code and Copyright */}
-          <div className="mb-6">
+          <div className="mb-4 md:mb-6">
             <p className="text-xs text-dksh-black mb-1 font-poppins">
               Placeholder of Approval # | Date of Approval
             </p>
@@ -16,7 +16,7 @@ export default function Footer() {
           </div>
 
           {/* Disclaimers */}
-          <div className="space-y-3 mb-6">
+          <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
             <p className="text-xs text-dksh-black font-poppins">
               Nothing on this website should be construed as giving medical advice or making recommendations regarding any health-related decision or action.
             </p>
@@ -32,11 +32,11 @@ export default function Footer() {
           </div>
 
           {/* Bottom Section */}
-          <div className="pt-8 border-t border-gray-300">
-            <div className="flex items-center justify-between">
+          <div className="pt-4 md:pt-6 lg:pt-8 border-t border-gray-300">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
               {/* Logo */}
-              <div className="flex items-center">
-                <div className="w-[147px] h-[68px] relative">
+              <div className="flex items-center order-2 md:order-1">
+                <div className="w-[120px] h-[56px] md:w-[147px] md:h-[68px] relative">
                   <Image
                     src="/images/DKSH-logo-footer.png"
                     alt="DKSH"
@@ -48,9 +48,9 @@ export default function Footer() {
               </div>
 
               {/* Social Icons and Links */}
-              <div>
+              <div className="order-1 md:order-2">
                 {/* Social Icons */}
-                <div className="flex items-center gap-4 mb-3 justify-end">
+                <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-3 justify-center md:justify-end">
                   <a href="#" className="text-dksh-black hover:text-dksh-red transition-colors duration-300">
                     <span className="sr-only">Facebook</span>
                     <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@ export default function Footer() {
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-6 text-xs font-poppins">
+                <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 md:gap-6 text-xs font-poppins">
                   <a href="/terms-of-use" className="text-dksh-medium-blue hover:underline transition-all duration-200">Terms of Use</a>
                   <a href="/privacy-statement" className="text-dksh-medium-blue hover:underline transition-all duration-200">Privacy Statement</a>
                   <a href="/accessibility-statement" className="text-dksh-medium-blue hover:underline transition-all duration-200">Accessibility Statement</a>
