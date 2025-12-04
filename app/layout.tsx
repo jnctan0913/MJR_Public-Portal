@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins, Zilla_Slab } from 'next/font/google'
 import './globals.css'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -53,6 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${zillaSlab.variable} font-poppins overflow-x-hidden`}>
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
