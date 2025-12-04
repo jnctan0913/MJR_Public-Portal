@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { trackVideoPlay } from '@/lib/analytics'
 
 interface HeroSectionProps {
   onVideoPlay?: (isPlaying: boolean) => void
@@ -16,6 +17,8 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
     setIsVideoPlaying(true)
     setVideoKey(prev => prev + 1)
     onVideoPlay?.(true)
+    // Track video play for compliance reporting
+    trackVideoPlay('Hero Section Video', 'Hero')
   }
 
   const handleCloseVideo = () => {

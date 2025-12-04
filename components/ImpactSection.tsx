@@ -1,11 +1,18 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { trackVideoPlay } from '@/lib/analytics'
 
 export default function ImpactSection() {
   const [showVideo, setShowVideo] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+
+  const handlePlayVideo = () => {
+    setShowVideo(true)
+    // Track video play for compliance reporting
+    trackVideoPlay('Impact Section Video', 'Impact')
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -77,7 +84,7 @@ export default function ImpactSection() {
             {/* Play Button Section */}
             <div className="flex flex-col items-center shrink-0">
               <button 
-                onClick={() => setShowVideo(true)}
+                onClick={handlePlayVideo}
                 className="w-24 h-24 rounded-full bg-white border-4 border-dksh-red flex items-center justify-center shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 group"
               >
                 <div className="w-0 h-0 border-t-[16px] border-t-transparent border-l-[28px] border-l-dksh-red border-b-[16px] border-b-transparent ml-2 group-hover:scale-110 transition-transform duration-300"></div>

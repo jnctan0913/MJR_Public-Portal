@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import { trackBMICalculation } from '@/lib/analytics'
 
 export default function BMISection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -65,19 +66,27 @@ export default function BMISection() {
       setBmi(parseFloat(calculatedBMI.toFixed(1)))
 
       // Determine category and risk
+      let bmiCategory = ''
       if (calculatedBMI >= 27.5) {
+        bmiCategory = 'Obese'
         setCategory('Obese')
         setRisk('High Risk')
       } else if (calculatedBMI >= 23.0) {
+        bmiCategory = 'Overweight'
         setCategory('Overweight')
         setRisk('Moderate Risk')
       } else if (calculatedBMI >= 18.5) {
+        bmiCategory = 'Normal'
         setCategory('Normal')
         setRisk('Low risk (healthy range)')
       } else {
+        bmiCategory = 'Underweight'
         setCategory('Underweight')
         setRisk('Low risk')
       }
+
+      // Track BMI calculation for compliance reporting
+      trackBMICalculation(calculatedBMI, bmiCategory)
     }
   }
 
