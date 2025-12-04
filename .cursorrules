@@ -1,0 +1,31 @@
+# Cursor Rules for Pixel-Perfect Figma Implementation
+
+## Core Principle
+Every UI element MUST match the Figma design exactly. When in doubt, refer to Figma via MCP.
+
+## Framework Priority
+1. **Next.js** (App Router preferred)
+2. **React** (with TypeScript)
+
+## Design Implementation Requirements
+
+### 1. Figma Reference Protocol
+- ALWAYS query Figma designs via MCP before starting any UI component
+- Extract exact values for:
+  - Spacing (padding, margin, gaps)
+  - Colors (hex codes, opacity)
+  - Typography (font family, size, weight, line height, letter spacing)
+  - Border radius, shadows, and effects
+  - Component dimensions (width, height)
+  - Layout properties (flex, grid, positioning)
+
+### 2. Styling Approach
+- Use **Tailwind CSS** for styling (primary method)
+- For complex styles not achievable with Tailwind, use CSS modules
+- Never approximate values - use exact px/rem values from Figma
+- Maintain exact spacing system from Figma design tokens
+
+### 3. Asset Management
+
+#### Image Placeholders
+When Figma design includes images/assets:
