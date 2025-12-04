@@ -16,8 +16,11 @@ const zillaSlab = Zilla_Slab({
 })
 
 export const metadata: Metadata = {
-  title: 'Understanding Obesity - DKSH',
+  title: 'Obesity is a Disease | SG',
   description: 'It\'s time for a real change in weight loss. Learn about obesity as a chronic disease and explore comprehensive weight management approaches.',
+  icons: {
+    icon: '/images/OIAD.png',
+  },
 }
 
 export default function RootLayout({
