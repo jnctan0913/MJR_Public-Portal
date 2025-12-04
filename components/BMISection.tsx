@@ -115,7 +115,7 @@ export default function BMISection() {
           {/* BMI Calculator Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-[5fr_4fr] gap-6 md:gap-8 lg:gap-12 mt-6 md:mt-8">
             {/* Left Column - Calculator with integrated results */}
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-4 md:p-6 lg:p-8 shadow-lg h-auto lg:h-[440px] flex flex-col overflow-hidden">
+            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-4 md:p-6 lg:p-8 shadow-lg h-auto lg:h-[440px] flex flex-col">
               <h2 className="text-xl font-bold text-center mb-3 font-poppins text-dksh-black tracking-wide">
                 BMI Calculator
               </h2>
@@ -135,7 +135,7 @@ export default function BMISection() {
                         type="number"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
-                        className="flex-1 p-2.5 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none transition-all shadow-sm"
+                        className="flex-1 min-w-0 p-2.5 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none transition-all shadow-sm"
                         placeholder={heightUnit === 'cm' ? '170' : '5.7'}
                       />
                       <select
@@ -145,7 +145,7 @@ export default function BMISection() {
                           setHeight('')
                           setBmi(null)
                         }}
-                        className="px-2 py-2 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none bg-white transition-all cursor-pointer shadow-sm"
+                        className="w-16 px-2 py-2 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none bg-white transition-all cursor-pointer shadow-sm"
                       >
                         <option value="cm">cm</option>
                         <option value="ft">ft</option>
@@ -164,7 +164,7 @@ export default function BMISection() {
                         type="number"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
-                        className="flex-1 p-2.5 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none transition-all shadow-sm"
+                        className="flex-1 min-w-0 p-2.5 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none transition-all shadow-sm"
                         placeholder={weightUnit === 'kg' ? '70' : '154'}
                       />
                       <select
@@ -174,7 +174,7 @@ export default function BMISection() {
                           setWeight('')
                           setBmi(null)
                         }}
-                        className="px-2 py-2 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none bg-white transition-all cursor-pointer shadow-sm"
+                        className="w-16 px-2 py-2 rounded-lg border border-gray-200 text-dksh-black text-base font-poppins focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:outline-none bg-white transition-all cursor-pointer shadow-sm"
                       >
                         <option value="kg">kg</option>
                         <option value="lbs">lbs</option>
@@ -230,9 +230,9 @@ export default function BMISection() {
                       } opacity-60 blur-sm group-hover:opacity-80 transition-all duration-500`}></div>
                       
                       {/* Inner glass content */}
-                      <div className="relative bg-white/60 backdrop-blur-lg rounded-2xl p-2 md:p-4 border border-white/30 shadow-xl w-full h-full flex items-center overflow-hidden">
-                        <div className="w-1/3 flex flex-col items-center justify-center px-1 md:px-4">
-                          <h3 className="text-xs md:text-base font-bold text-dksh-black/80 mb-1 md:mb-2 font-poppins tracking-wide text-center whitespace-nowrap">
+                      <div className="relative bg-white/60 backdrop-blur-lg rounded-2xl p-4 border border-white/30 shadow-xl w-full h-full flex items-center">
+                        <div className="w-1/3 flex flex-col items-center justify-center px-4">
+                          <h3 className="text-base font-bold text-dksh-black/80 mb-2 font-poppins tracking-wide text-center whitespace-nowrap">
                             Your BMI
                           </h3>
                           
@@ -244,97 +244,97 @@ export default function BMISection() {
                               category === 'Normal' ? 'bg-green-400' :
                               'bg-blue-400'
                             }`}></div>
-                            <div className="relative text-3xl md:text-5xl font-extrabold bg-gradient-to-br from-dksh-black via-gray-800 to-dksh-black bg-clip-text text-transparent font-poppins">
+                            <div className="relative text-5xl font-extrabold bg-gradient-to-br from-dksh-black via-gray-800 to-dksh-black bg-clip-text text-transparent font-poppins">
                               {bmi}
                             </div>
                           </div>
                         </div>
-                        <div className="w-2/3 flex items-center justify-center overflow-hidden">
+                        <div className="w-2/3 flex items-center justify-center">
                           <div className="relative w-full h-full flex items-center justify-center">
                             {category === 'Normal' && (
-                              <div className="text-center px-2 md:px-4">
-                                <div className="flex justify-center mb-1 md:mb-1.5">
+                              <div className="text-center px-4">
+                                <div className="flex justify-center mb-1.5">
                                   <Image
                                     src="/images/Normal_weight.png"
                                     alt="Normal Weight"
-                                    width={50}
-                                    height={50}
-                                    className="object-contain md:w-[70px] md:h-[70px]"
+                                    width={70}
+                                    height={70}
+                                    className="object-contain"
                                   />
                                 </div>
-                                <h4 className="text-sm md:text-lg font-bold text-green-600 font-poppins mb-0.5 md:mb-1">
+                                <h4 className="text-lg font-bold text-green-600 font-poppins mb-1">
                                   Normal Weight
                                 </h4>
-                                <p className="text-xs md:text-sm text-dksh-black/80 font-poppins leading-snug mb-1.5 md:mb-2.5">
+                                <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-2.5">
                                   Keep up the great work with balanced nutrition and regular physical activity.
                                 </p>
-                                <button className="bg-green-600 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold font-poppins hover:bg-green-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200">
+                                <button className="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-green-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200">
                                   Learn More
                                 </button>
                               </div>
                             )}
                             {category === 'Overweight' && (
-                              <div className="text-center px-2 md:px-4">
-                                <div className="flex justify-center mb-1 md:mb-2">
+                              <div className="text-center px-4">
+                                <div className="flex justify-center mb-2">
                                   <Image
                                     src="/images/Overweight.png"
                                     alt="Overweight"
-                                    width={50}
-                                    height={50}
-                                    className="object-contain md:w-[80px] md:h-[80px]"
+                                    width={80}
+                                    height={80}
+                                    className="object-contain"
                                   />
                                 </div>
-                                <h4 className="text-sm md:text-lg font-bold text-orange-600 font-poppins mb-0.5 md:mb-1">
+                                <h4 className="text-lg font-bold text-orange-600 font-poppins mb-1">
                                   Overweight
                                 </h4>
-                                <p className="text-xs md:text-sm text-dksh-black/80 font-poppins leading-snug mb-1.5 md:mb-3">
+                                <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
                                   Consider consulting with a healthcare professional about healthy lifestyle changes.
                                 </p>
-                                <button className="bg-orange-600 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold font-poppins hover:bg-orange-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
+                                <button className="bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-orange-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
                                   Act Now!
                                 </button>
                               </div>
                             )}
                             {category === 'Obese' && (
-                              <div className="text-center px-2 md:px-4">
-                                <div className="flex justify-center mb-1 md:mb-2">
+                              <div className="text-center px-4">
+                                <div className="flex justify-center mb-2">
                                   <Image
                                     src="/images/Obese.png"
                                     alt="Obese"
-                                    width={50}
-                                    height={50}
-                                    className="object-contain md:w-[80px] md:h-[80px]"
+                                    width={80}
+                                    height={80}
+                                    className="object-contain"
                                   />
                                 </div>
-                                <h4 className="text-sm md:text-lg font-bold text-red-600 font-poppins mb-0.5 md:mb-1">
+                                <h4 className="text-lg font-bold text-red-600 font-poppins mb-1">
                                   Obese
                                 </h4>
-                                <p className="text-xs md:text-sm text-dksh-black/80 font-poppins leading-snug mb-1.5 md:mb-3">
+                                <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
                                   We strongly recommend speaking with your doctor about personalized treatment options and support.
                                 </p>
-                                <button className="bg-red-600 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold font-poppins hover:bg-red-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
+                                <button className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-red-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
                                   Act Now!
                                 </button>
                               </div>
                             )}
                             {category === 'Underweight' && (
-                              <div className="text-center px-2 md:px-4">
-                                <div className="flex justify-center mb-1 md:mb-2">
+                              <div className="text-center px-4">
+                                <div className="flex justify-center mb-2">
                                   <Image
                                     src="/images/Underweight.png"
                                     alt="Underweight"
-                                    width={50}
-                                    height={50}
-                                    className="object-contain md:w-[80px] md:h-[80px]"
+                                    width={80}
+                                    height={80}
+                                    className="object-contain"
                                   />
                                 </div>
-                                <h4 className="text-sm md:text-lg font-bold text-blue-600 font-poppins mb-0.5 md:mb-1">
+                                <h4 className="text-lg font-bold text-blue-600 font-poppins mb-1">
                                   Underweight
                                 </h4>
-                                <p className="text-xs md:text-sm text-dksh-black/80 font-poppins leading-snug mb-1.5 md:mb-3">
+                                <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
                                   Consider consulting with a healthcare professional for guidance.
                                 </p>
-                                <button className="bg-blue-600 text-white px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold font-poppins hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
+                                <button className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
                                   Act Now!
                                 </button>
                               </div>
