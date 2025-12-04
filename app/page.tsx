@@ -16,8 +16,13 @@ export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   useEffect(() => {
-    // Scroll to top on page load/reload
-    window.scrollTo(0, 0)
+    // Scroll to top on page load/reload for all platforms
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    
+    // Also prevent scroll restoration on refresh
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
   }, [])
 
   return (
