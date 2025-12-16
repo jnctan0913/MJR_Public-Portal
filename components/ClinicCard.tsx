@@ -3,15 +3,16 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Clinic } from '@/types/clinic'
-import { formatAddress, getGoogleMapsUrl, formatPhoneNumber } from '@/lib/clinics'
+import { formatAddress, getGoogleMapsUrl, formatPhoneNumber, formatDistance } from '@/lib/clinics'
 import { urlFor } from '@/sanity/lib/client'
 import DoctorModal from './DoctorModal'
 
 interface ClinicCardProps {
   clinic: Clinic
+  distance?: number // Distance in kilometers (optional)
 }
 
-export default function ClinicCard({ clinic }: ClinicCardProps) {
+export default function ClinicCard({ clinic, distance }: ClinicCardProps) {
   const [selectedDoctorIndex, setSelectedDoctorIndex] = useState<number | null>(null)
   const address = formatAddress(clinic.address)
   const googleMapsUrl = getGoogleMapsUrl(clinic)
@@ -20,9 +21,9 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out overflow-visible border border-gray-200 hover:border-dksh-red hover:ring-2 hover:ring-dksh-red/20 hover:ring-offset-0 relative transform hover:-translate-y-2">
+      <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out overflow-visible border border-gray-200 hover:border-dksh-red hover:ring-2 hover:ring-dksh-red/20 hover:ring-offset-0 relative transform hover:-translate-y-2 h-full w-full flex flex-col">
         {/* Clinic Info */}
-        <div className="p-6 md:p-8">
+        <div className="px-6 py-4 md:px-8 md:py-5 flex-1 flex flex-col">
           {/* Logo Section */}
           {clinic.image && (
             <div className="flex flex-col items-center mb-2">
@@ -36,14 +37,14 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
                 />
               </div>
               {/* Elegant Divider Line */}
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-2"></div>
+              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-2"></div>
             </div>
           )}
 
           {/* Clinic Name */}
           <h3 className="text-xl md:text-2xl font-bold text-dksh-black font-poppins mb-4 text-center">
-            {clinic.name}
-          </h3>
+              {clinic.name}
+            </h3>
 
           {/* Doctors Section - Only show if doctors exist */}
           {clinic.doctors && clinic.doctors.length > 0 && (
@@ -101,13 +102,20 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
                 >
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
-                <span className="flex-1">{address}</span>
+                <span className="flex-1">
+                  {address}
+                  {distance !== undefined && (
+                    <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-dksh-red text-white">
+                      {formatDistance(distance)}
+                    </span>
+                  )}
+                </span>
               </a>
             </div>
           )}
 
           {/* Contact */}
-          <div className="mb-4 space-y-2">
+          <div className="mb-4 space-y-2 flex-grow">
             <h4 className="text-sm font-semibold text-dksh-black mb-2 font-poppins">Contact</h4>
             
             {/* Phone Numbers - Support multiple with different types */}
@@ -174,7 +182,7 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
 
         </div>
 
-        {/* CTA Icon Button - Bottom Right Corner - Only show if link exists */}
+        {/* CTA Icon Button - Top Right Corner - Only show if link exists */}
         {((isTelehealthService && clinic.serviceProvider?.website) ||
           (!isTelehealthService && clinic.serviceProvider?.clinicPageUrl)) && (
           <a
@@ -183,9 +191,9 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
                 ? clinic.serviceProvider.website
                 : clinic.serviceProvider.clinicPageUrl
             }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group absolute bottom-4 right-4 bg-dksh-red hover:bg-dksh-dark-red text-white h-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center z-10 overflow-hidden w-12 hover:w-auto hover:px-4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+            className="group absolute top-4 right-4 bg-dksh-red hover:bg-dksh-dark-red text-white h-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center z-10 overflow-hidden w-12 hover:w-auto hover:px-4"
             title={isTelehealthService ? "Visit Page" : "View Details"}
           >
             <span className="hidden group-hover:inline-block whitespace-nowrap font-bold font-poppins text-sm mr-2">
@@ -199,8 +207,8 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
-          </a>
-        )}
+                </a>
+              )}
       </div>
 
       {/* Doctor Modal */}

@@ -76,3 +76,72 @@ export async function getClinicsByRegion(): Promise<Record<string, Clinic[]>> {
 
   return regions
 }
+
+/**
+ * Calculate distance between two coordinates using Haversine formula
+ * Returns distance in kilometers
+ */
+export function calculateDistance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+): number {
+  const R = 6371 // Radius of the Earth in kilometers
+  const dLat = toRadians(lat2 - lat1)
+  const dLon = toRadians(lon2 - lon1)
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2)
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  const distance = R * c
+
+  return distance
+}
+
+function toRadians(degrees: number): number {
+  return degrees * (Math.PI / 180)
+}
+
+/**
+ * Find the nearest clinics to a given location
+ * Returns clinics sorted by distance with distance property added
+ */
+export function findNearestClinics(
+  clinics: Clinic[],
+  userLat: number,
+  userLng: number,
+  limit?: number
+): Array<Clinic & { distance: number }> {
+  // Filter out telehealth services
+  const physicalClinics = clinics.filter(
+    (clinic) => clinic.serviceProvider?.type !== 'telehealth_service'
+  )
+
+  // Calculate distances and add to clinic objects
+  const clinicsWithDistance = physicalClinics.map((clinic) => ({
+    ...clinic,
+    distance: calculateDistance(userLat, userLng, clinic.location.lat, clinic.location.lng),
+  }))
+
+  // Sort by distance
+  const sortedClinics = clinicsWithDistance.sort((a, b) => a.distance - b.distance)
+
+  // Return limited results if specified
+  return limit ? sortedClinics.slice(0, limit) : sortedClinics
+}
+
+/**
+ * Format distance for display
+ */
+export function formatDistance(distanceInKm: number): string {
+  if (distanceInKm < 1) {
+    return `${Math.round(distanceInKm * 1000)}m`
+  }
+  return `${distanceInKm.toFixed(1)}km`
+}
