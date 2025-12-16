@@ -23,8 +23,6 @@ export default async function ActNowPage() {
   const clinics = await getAllClinics()
 
   // Static page content
-  const heroHeading = 'It is time to change our approach to Obesity!'
-  const heroSubheading = 'Speak to a doctor today.'
   const ctaHeading = 'Find a Doctor Near You'
   const ctaDescription = undefined
 
@@ -43,12 +41,11 @@ export default async function ActNowPage() {
       </div>
 
       {/* Main Content */}
-      <div id="main-content" className="pt-[60px] md:pt-[90px] lg:pt-[113px]">
+      <div id="main-content" className="lg:pt-0">
         {/* Hero Section */}
-        <ActNowHeroSection
-          heading={heroHeading}
-          subheading={heroSubheading}
-        />
+        <ActNowHeroSection />
+        {/* Spacer to push content down below fixed hero */}
+        <div className="h-[720px] md:h-[618px] lg:h-[707px]"></div>
 
         {/* Introduction Section */}
         <ActNowIntroSection />

@@ -23,7 +23,7 @@ export default function ClinicFilters({ onFilterChange }: ClinicFiltersProps) {
 
   const providerTypes = [
     { value: 'all' as const, label: 'All' },
-    { value: 'clinic' as const, label: 'Physical Clinic' },
+    { value: 'clinic' as const, label: 'Clinics' },
     { value: 'telehealth_service' as const, label: 'Telehealth' },
   ]
 
@@ -60,14 +60,14 @@ export default function ClinicFilters({ onFilterChange }: ClinicFiltersProps) {
 
         {/* Right: Area Filter - Dropdown */}
         <div className="flex items-center gap-3">
-          <label htmlFor="area-select" className="text-sm text-dksh-gray font-medium font-poppins whitespace-nowrap">
+          <label htmlFor="area-select" className="text-sm text-dksh-black font-medium font-poppins whitespace-nowrap">
             Area:
           </label>
           <select
             id="area-select"
             value={selectedArea}
             onChange={(e) => handleAreaChange(e.target.value as ClinicArea | 'all')}
-            className="px-4 py-2 text-sm font-medium font-poppins text-dksh-gray bg-white border-2 border-gray-300 rounded-full focus:ring-2 focus:ring-dksh-red focus:border-dksh-red transition-all duration-200 cursor-pointer hover:border-dksh-red outline-none"
+            className="px-4 py-2 text-sm font-medium font-poppins text-dksh-black bg-white border border-gray-200 rounded-lg focus:border-dksh-red focus:ring-2 focus:ring-dksh-red/20 focus:ring-offset-0 hover:border-dksh-red hover:ring-2 hover:ring-dksh-red/20 hover:ring-offset-0 focus:outline-none transition-all cursor-pointer shadow-sm"
           >
             {areas.map((area) => (
               <option key={area.value} value={area.value}>

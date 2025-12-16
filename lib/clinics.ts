@@ -35,6 +35,33 @@ export function formatAddress(address: Clinic['address']): string {
   return parts.join(', ')
 }
 
+export function formatPhoneNumber(phoneNumber: string): string {
+  // Remove all non-digit characters first
+  const cleaned = phoneNumber.replace(/\D/g, '')
+
+  // Check if it's a Singapore number (starts with 65 or is 8 digits)
+  if (cleaned.startsWith('65')) {
+    // Format: +65 XXXX XXXX
+    const countryCode = cleaned.slice(0, 2)
+    const number = cleaned.slice(2)
+    if (number.length === 8) {
+      return `+${countryCode} ${number.slice(0, 4)} ${number.slice(4)}`
+    }
+  } else if (cleaned.length === 8) {
+    // Format: XXXX XXXX (local Singapore number without country code)
+    return `${cleaned.slice(0, 4)} ${cleaned.slice(4)}`
+  }
+
+  // For other formats, try to format as groups of 4
+  if (cleaned.length >= 8) {
+    const formatted = cleaned.match(/.{1,4}/g)
+    return formatted ? formatted.join(' ') : phoneNumber
+  }
+
+  // Return original if format is unrecognized
+  return phoneNumber
+}
+
 export async function getClinicsByRegion(): Promise<Record<string, Clinic[]>> {
   const clinics = await getAllClinics()
   const regions: Record<string, Clinic[]> = {}

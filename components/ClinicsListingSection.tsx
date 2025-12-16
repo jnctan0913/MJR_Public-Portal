@@ -57,7 +57,7 @@ export default function ClinicsListingSection({
 
   if (!clinics || clinics.length === 0) {
     return (
-      <section className="py-12 md:py-16 lg:py-20 bg-dksh-off-white">
+      <section className="relative py-12 md:py-16 lg:py-20 bg-dksh-off-white z-10">
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dksh-black font-poppins mb-4">
@@ -73,7 +73,7 @@ export default function ClinicsListingSection({
   }
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-dksh-off-white">
+    <section className="relative py-12 md:py-16 lg:py-20 bg-dksh-off-white z-10">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-12">

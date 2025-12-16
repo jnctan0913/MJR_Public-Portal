@@ -2,7 +2,7 @@ export default function MainContentSection() {
   return (
     <section id="main-content-section" className="relative bg-white py-8 md:py-12 z-10">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20">
-        <div className="max-w-[1504px] mx-auto">
+        <div className="max-w-[1075px] mx-auto">
           {/* Heading */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dksh-black mb-4 md:mb-6 font-poppins">
             It&apos;s time for a real change in weight loss

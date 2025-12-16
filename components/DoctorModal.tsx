@@ -2,16 +2,17 @@
 
 import { useEffect } from 'react'
 import Image from 'next/image'
-import { Doctor } from '@/types/clinic'
+import { Doctor, Clinic } from '@/types/clinic'
 import { urlFor } from '@/sanity/lib/client'
 
 interface DoctorModalProps {
   doctor: Doctor
+  clinic: Clinic
   isOpen: boolean
   onClose: () => void
 }
 
-export default function DoctorModal({ doctor, isOpen, onClose }: DoctorModalProps) {
+export default function DoctorModal({ doctor, clinic, isOpen, onClose }: DoctorModalProps) {
   // Handle ESC key press to close modal
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -34,13 +35,69 @@ export default function DoctorModal({ doctor, isOpen, onClose }: DoctorModalProp
 
   if (!isOpen) return null
 
+  const isTelehealthService = clinic.serviceProvider?.type === 'telehealth_service'
+
+  // Determine CTA link and text based on priority
+  const getCtaInfo = () => {
+    // Priority 1: Service provider website or clinic page URL
+    if (isTelehealthService && clinic.serviceProvider?.website) {
+      return {
+        href: clinic.serviceProvider.website,
+        text: 'Schedule a Call',
+        target: '_blank'
+      }
+    }
+    if (!isTelehealthService && clinic.serviceProvider?.clinicPageUrl) {
+      return {
+        href: clinic.serviceProvider.clinicPageUrl,
+        text: 'Schedule a Visit',
+        target: '_blank'
+      }
+    }
+
+    // Priority 2: WhatsApp
+    const whatsappNumber = clinic.contact.phoneNumbers?.find(phone => phone.type === 'whatsapp')
+    if (whatsappNumber) {
+      const cleanNumber = whatsappNumber.number.replace(/[^0-9]/g, '')
+      return {
+        href: `https://wa.me/${cleanNumber}`,
+        text: isTelehealthService ? 'Schedule a Call' : 'Schedule a Visit',
+        target: '_blank'
+      }
+    }
+
+    // Priority 3: Email
+    if (clinic.contact.email) {
+      return {
+        href: `mailto:${clinic.contact.email}`,
+        text: isTelehealthService ? 'Schedule a Call' : 'Schedule a Visit',
+        target: undefined
+      }
+    }
+
+    // Priority 4: Phone number
+    const phoneNumber = clinic.contact.phoneNumbers?.[0]
+    if (phoneNumber) {
+      return {
+        href: `tel:${phoneNumber.number}`,
+        text: isTelehealthService ? 'Schedule a Call' : 'Schedule a Visit',
+        target: undefined
+      }
+    }
+
+    // Fallback: Close button
+    return null
+  }
+
+  const ctaInfo = getCtaInfo()
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm pt-24"
       onClick={onClose}
     >
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -143,14 +200,25 @@ export default function DoctorModal({ doctor, isOpen, onClose }: DoctorModalProp
             </div>
           )}
 
-          {/* Close Button at Bottom */}
+          {/* CTA Button at Bottom */}
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <button
-              onClick={onClose}
-              className="w-full px-6 py-3 bg-dksh-red text-white font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
-            >
-              Close
-            </button>
+            {ctaInfo ? (
+              <a
+                href={ctaInfo.href}
+                target={ctaInfo.target}
+                rel={ctaInfo.target === '_blank' ? 'noopener noreferrer' : undefined}
+                className="block w-full px-6 py-3 bg-dksh-red text-white font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 text-center"
+              >
+                {ctaInfo.text}
+              </a>
+            ) : (
+              <button
+                onClick={onClose}
+                className="w-full px-6 py-3 bg-dksh-red text-white font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
+              >
+                Close
+              </button>
+            )}
           </div>
         </div>
       </div>
