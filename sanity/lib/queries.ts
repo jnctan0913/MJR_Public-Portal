@@ -18,9 +18,7 @@ export const clinicsQuery = groq`
       },
       email
     },
-    hours,
     image,
-    description,
     serviceProvider {
       type,
       website,
@@ -55,9 +53,7 @@ export const featuredClinicsQuery = groq`
       },
       email
     },
-    hours,
     image,
-    description,
     serviceProvider {
       type,
       website,
@@ -92,9 +88,7 @@ export const clinicBySlugQuery = groq`
       },
       email
     },
-    hours,
     image,
-    description,
     serviceProvider {
       type,
       website,

@@ -196,55 +196,6 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'hours',
-      title: 'Operating Hours',
-      type: 'object',
-      fields: [
-        {
-          name: 'monday',
-          title: 'Monday',
-          type: 'string',
-          initialValue: '9:00 AM - 6:00 PM',
-        },
-        {
-          name: 'tuesday',
-          title: 'Tuesday',
-          type: 'string',
-          initialValue: '9:00 AM - 6:00 PM',
-        },
-        {
-          name: 'wednesday',
-          title: 'Wednesday',
-          type: 'string',
-          initialValue: '9:00 AM - 6:00 PM',
-        },
-        {
-          name: 'thursday',
-          title: 'Thursday',
-          type: 'string',
-          initialValue: '9:00 AM - 6:00 PM',
-        },
-        {
-          name: 'friday',
-          title: 'Friday',
-          type: 'string',
-          initialValue: '9:00 AM - 6:00 PM',
-        },
-        {
-          name: 'saturday',
-          title: 'Saturday',
-          type: 'string',
-          initialValue: '9:00 AM - 1:00 PM',
-        },
-        {
-          name: 'sunday',
-          title: 'Sunday',
-          type: 'string',
-          initialValue: 'Closed',
-        },
-      ],
-    }),
-    defineField({
       name: 'image',
       title: 'Clinic/Provider Image',
       type: 'image',
@@ -261,13 +212,6 @@ export default defineType({
         },
       ],
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 4,
-      description: 'Brief description of the clinic',
     }),
     defineField({
       name: 'doctors',

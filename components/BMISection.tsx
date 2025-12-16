@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { trackBMICalculation } from '@/lib/analytics'
 
 export default function BMISection() {
@@ -277,9 +278,12 @@ export default function BMISection() {
                                 <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-2.5">
                                   Keep up the great work with balanced nutrition and regular physical activity.
                                 </p>
-                                <button className="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-green-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200">
+                                <Link 
+                                  href="/act-now"
+                                  className="inline-block bg-green-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-green-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200"
+                                >
                                   Learn More
-                                </button>
+                                </Link>
                               </div>
                             )}
                             {category === 'Overweight' && (
@@ -299,9 +303,12 @@ export default function BMISection() {
                                 <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
                                   Consider consulting with a healthcare professional about healthy lifestyle changes.
                                 </p>
-                                <button className="bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-orange-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
+                                <Link 
+                                  href="/act-now"
+                                  className="inline-block bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-orange-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse"
+                                >
                                   Act Now!
-                                </button>
+                                </Link>
                               </div>
                             )}
                             {category === 'Obese' && (
@@ -321,9 +328,12 @@ export default function BMISection() {
                                 <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
                                   We strongly recommend speaking with your doctor about personalized treatment options and support.
                                 </p>
-                                <button className="bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-red-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
+                                <Link 
+                                  href="/act-now"
+                                  className="inline-block bg-red-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-red-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse"
+                                >
                                   Act Now!
-                                </button>
+                                </Link>
                               </div>
                             )}
                             {category === 'Underweight' && (
@@ -343,9 +353,12 @@ export default function BMISection() {
                                 <p className="text-sm text-dksh-black/80 font-poppins leading-snug mb-3">
                                   Consider consulting with a healthcare professional for guidance.
                                 </p>
-                                <button className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse">
+                                <Link 
+                                  href="/act-now"
+                                  className="inline-block bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold font-poppins hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200 animate-pulse"
+                                >
                                   Act Now!
-                                </button>
+                                </Link>
                               </div>
                             )}
                           </div>

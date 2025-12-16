@@ -32,43 +32,37 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
                 className={isTelehealthService ? "object-contain p-4" : "object-cover"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
+              {/* CTA Button - Top Right Corner */}
+              <a
+                href={
+                  isTelehealthService 
+                    ? (clinic.serviceProvider?.website || '#') 
+                    : (clinic.serviceProvider?.clinicPageUrl || '#')
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-3 right-3 bg-dksh-red hover:bg-dksh-dark-red text-white px-4 py-2 rounded-full text-sm font-bold font-poppins transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2 z-10"
+              >
+                <span>{isTelehealthService ? "Visit Page" : "View Details"}</span>
+                <svg 
+                  className="w-4 h-4" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           )}
         </div>
 
         {/* Clinic Info */}
         <div className="p-4 md:p-6">
-          {/* Name and Badges */}
-          <div className="flex items-start justify-between mb-3">
-            <h3 className="text-xl md:text-2xl font-bold text-dksh-black font-poppins">
-              {clinic.name}
-            </h3>
-            <div className="flex flex-col gap-1 ml-2">
-              {clinic.featured && (
-                <span className="px-2 py-1 bg-dksh-yellow text-dksh-black text-xs font-semibold rounded-md whitespace-nowrap">
-                  Featured
-                </span>
-              )}
-              {clinic.serviceProvider?.type && (
-                <span className={`px-2 py-1 text-xs font-semibold rounded-md whitespace-nowrap ${
-                  clinic.serviceProvider.type === 'telehealth_service'
-                    ? 'bg-dksh-pale-blue text-dksh-dark-blue'
-                    : 'bg-gray-100 text-gray-700'
-                }`}>
-                  {clinic.serviceProvider.type === 'telehealth_service'
-                    ? 'Telehealth'
-                    : 'Clinic'}
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Description */}
-          {clinic.description && (
-            <p className="text-sm md:text-base text-dksh-gray mb-4 line-clamp-2">
-              {clinic.description}
-            </p>
-          )}
+          {/* Clinic Name */}
+          <h3 className="text-xl md:text-2xl font-bold text-dksh-black font-poppins mb-3">
+            {clinic.name}
+          </h3>
 
           {/* Doctors Section - Only show if doctors exist */}
           {clinic.doctors && clinic.doctors.length > 0 && (
@@ -196,49 +190,6 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
             </a>
           </div>
 
-          {/* Operating Hours */}
-          <div className="mb-4">
-            <h4 className="text-sm font-semibold text-dksh-black mb-2 font-poppins">Operating Hours</h4>
-            <div className="space-y-1 text-xs md:text-sm">
-              <div className="flex justify-between">
-                <span className="text-dksh-gray">Mon - Fri:</span>
-                <span className="text-dksh-black font-medium">{clinic.hours.monday}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-dksh-gray">Saturday:</span>
-                <span className="text-dksh-black font-medium">{clinic.hours.saturday}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-dksh-gray">Sunday:</span>
-                <span className="text-dksh-black font-medium">{clinic.hours.sunday}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Buttons - Conditional based on service provider type */}
-          {isTelehealthService ? (
-            // Telehealth Service - Link to their website or provider page
-            <a
-              href={clinic.serviceProvider?.website || '#'}
-              target={clinic.serviceProvider?.website ? "_blank" : undefined}
-              rel={clinic.serviceProvider?.website ? "noopener noreferrer" : undefined}
-              className="block w-full px-4 py-3 bg-dksh-red text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
-            >
-              Visit Provider Page
-            </a>
-          ) : (
-            // Physical Clinic - Show clinic page link only (Google Maps moved to address)
-            clinic.serviceProvider?.clinicPageUrl && (
-              <a
-                href={clinic.serviceProvider.clinicPageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-4 py-3 bg-dksh-red text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
-              >
-                View Clinic Page
-              </a>
-            )
-          )}
         </div>
       </div>
 

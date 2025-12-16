@@ -25,16 +25,6 @@ export interface ClinicLocation {
   alt?: number
 }
 
-export interface ClinicHours {
-  monday: string
-  tuesday: string
-  wednesday: string
-  thursday: string
-  friday: string
-  saturday: string
-  sunday: string
-}
-
 export type ClinicArea = 'central' | 'north' | 'south' | 'east' | 'west' | 'north-east'
 export type ServiceProviderType = 'clinic' | 'telehealth_service'
 
@@ -71,10 +61,8 @@ export interface Clinic {
   address: ClinicAddress
   contact: ClinicContact
   location: ClinicLocation
-  hours: ClinicHours
   featured: boolean
   image?: SanityImage
-  description?: string
   serviceProvider?: ServiceProvider
   doctors?: Doctor[]
 }
