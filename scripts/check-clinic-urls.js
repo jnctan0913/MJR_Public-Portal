@@ -46,3 +46,4 @@ async function checkClinicURLs() {
 
 checkClinicURLs()
 
+

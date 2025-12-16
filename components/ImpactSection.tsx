@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
 import { trackVideoPlay } from '@/lib/analytics'
 
 export default function ImpactSection() {
@@ -55,9 +56,9 @@ export default function ImpactSection() {
             </p>
 
             <div className="flex justify-center lg:justify-start">
-              <button className="min-w-button px-[41.6px] py-[10px] bg-dksh-red text-white text-lg font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 ease-out">
+              <Link href="/act-now" className="min-w-button px-[41.6px] py-[10px] bg-dksh-red text-white text-lg font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300 ease-out inline-block text-center">
                 Act Now!
-              </button>
+              </Link>
             </div>
           </div>
         </div>

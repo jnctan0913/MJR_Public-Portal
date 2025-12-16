@@ -31,7 +31,7 @@ export default function ClinicsListingSection({
     providerType: 'all',
     area: 'all',
   })
-  const [viewMode, setViewMode] = useState<ViewMode>('grid')
+  const [viewMode, setViewMode] = useState<ViewMode>('map')
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({
     lat: 1.3521,
     lng: 103.8198,
