@@ -28,7 +28,6 @@ export interface ClinicHours {
   sunday: string
 }
 
-export type ClinicType = 'clinic' | 'telehealth' | 'both'
 export type ClinicArea = 'central' | 'north' | 'south' | 'east' | 'west' | 'north-east'
 export type ServiceProviderType = 'clinic' | 'telehealth_service'
 
@@ -62,7 +61,6 @@ export interface Clinic {
   slug: {
     current: string
   }
-  clinicType: ClinicType
   area?: ClinicArea
   address: ClinicAddress
   contact: ClinicContact

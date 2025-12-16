@@ -65,18 +65,14 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
                   Featured
                 </span>
               )}
-              {clinic.clinicType && (
+              {clinic.serviceProvider?.type && (
                 <span className={`px-2 py-1 text-xs font-semibold rounded-md whitespace-nowrap ${
-                  clinic.clinicType === 'telehealth'
+                  clinic.serviceProvider.type === 'telehealth_service'
                     ? 'bg-dksh-pale-blue text-dksh-dark-blue'
-                    : clinic.clinicType === 'both'
-                    ? 'bg-dksh-mint text-dksh-green-dark'
                     : 'bg-gray-100 text-gray-700'
                 }`}>
-                  {clinic.clinicType === 'telehealth'
+                  {clinic.serviceProvider.type === 'telehealth_service'
                     ? 'Telehealth'
-                    : clinic.clinicType === 'both'
-                    ? 'Clinic & Telehealth'
                     : 'Clinic'}
                 </span>
               )}

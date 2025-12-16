@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Clinic, ClinicType, ClinicArea } from '@/types/clinic'
+import { Clinic, ServiceProviderType, ClinicArea } from '@/types/clinic'
 import ClinicCard from './ClinicCard'
 import ClinicFilters from './ClinicFilters'
 
@@ -17,41 +17,26 @@ export default function ClinicsListingSection({
   description,
 }: ClinicsListingSectionProps) {
   const [filters, setFilters] = useState<{
-    clinicType: ClinicType | 'all'
+    providerType: ServiceProviderType | 'all'
     area: ClinicArea | 'all'
   }>({
-    clinicType: 'all',
+    providerType: 'all',
     area: 'all',
   })
 
   const filteredClinics = useMemo(() => {
     return clinics.filter((clinic) => {
-      // Filter by clinic type
-      if (filters.clinicType !== 'all') {
-        // When "Physical Clinic" is selected, show clinics with type 'clinic' OR 'both'
-        if (filters.clinicType === 'clinic') {
-          if (clinic.clinicType !== 'clinic' && clinic.clinicType !== 'both') {
-            return false
-          }
-        }
-        // When "Telehealth" is selected, show clinics with type 'telehealth' OR 'both'
-        else if (filters.clinicType === 'telehealth') {
-          if (clinic.clinicType !== 'telehealth' && clinic.clinicType !== 'both') {
-            return false
-          }
-        }
-        // When "Both" is selected, show only clinics with type 'both'
-        else if (filters.clinicType === 'both') {
-          if (clinic.clinicType !== 'both') {
-            return false
-          }
+      // Filter by provider type
+      if (filters.providerType !== 'all') {
+        if (clinic.serviceProvider?.type !== filters.providerType) {
+          return false
         }
       }
 
       // Filter by area (skip if clinic is telehealth-only)
       if (filters.area !== 'all' && clinic.area !== filters.area) {
-        // Telehealth-only clinics don't have an area, so skip area filter for them
-        if (clinic.clinicType !== 'telehealth') {
+        // Telehealth-only services don't have an area, so skip area filter for them
+        if (clinic.serviceProvider?.type !== 'telehealth_service') {
           return false
         }
       }

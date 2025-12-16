@@ -29,21 +29,6 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
-      name: 'clinicType',
-      title: 'Clinic Type',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Physical Clinic', value: 'clinic' },
-          { title: 'Telehealth', value: 'telehealth' },
-          { title: 'Both Clinic & Telehealth', value: 'both' },
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'clinic',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'area',
       title: 'Area in Singapore',
       type: 'string',

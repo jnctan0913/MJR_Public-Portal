@@ -1,33 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { ClinicType, ClinicArea } from '@/types/clinic'
+import { ServiceProviderType, ClinicArea } from '@/types/clinic'
 
 interface ClinicFiltersProps {
-  onFilterChange: (filters: { clinicType: ClinicType | 'all'; area: ClinicArea | 'all' }) => void
+  onFilterChange: (filters: { providerType: ServiceProviderType | 'all'; area: ClinicArea | 'all' }) => void
 }
 
 export default function ClinicFilters({ onFilterChange }: ClinicFiltersProps) {
-  const [selectedType, setSelectedType] = useState<ClinicType | 'all'>('all')
+  const [selectedType, setSelectedType] = useState<ServiceProviderType | 'all'>('all')
   const [selectedArea, setSelectedArea] = useState<ClinicArea | 'all'>('all')
 
-  const handleTypeChange = (type: ClinicType | 'all') => {
-    console.log('Type changed to:', type)
+  const handleTypeChange = (type: ServiceProviderType | 'all') => {
+    console.log('Provider type changed to:', type)
     setSelectedType(type)
-    onFilterChange({ clinicType: type, area: selectedArea })
+    onFilterChange({ providerType: type, area: selectedArea })
   }
 
   const handleAreaChange = (area: ClinicArea | 'all') => {
     console.log('Area changed to:', area)
     setSelectedArea(area)
-    onFilterChange({ clinicType: selectedType, area })
+    onFilterChange({ providerType: selectedType, area })
   }
 
-  const clinicTypes = [
-    { value: 'all' as const, label: 'All', count: 0 },
-    { value: 'clinic' as const, label: 'Physical Clinic', count: 0 },
-    { value: 'telehealth' as const, label: 'Telehealth', count: 0 },
-    { value: 'both' as const, label: 'Both', count: 0 },
+  const providerTypes = [
+    { value: 'all' as const, label: 'All' },
+    { value: 'clinic' as const, label: 'Physical Clinic' },
+    { value: 'telehealth_service' as const, label: 'Telehealth' },
   ]
 
   const areas = [
@@ -43,9 +42,9 @@ export default function ClinicFilters({ onFilterChange }: ClinicFiltersProps) {
   return (
     <div className="mb-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        {/* Left: Clinic Type Filter - Pill Style */}
+        {/* Left: Provider Type Filter - Pill Style */}
         <div className="flex flex-wrap items-center gap-2">
-          {clinicTypes.map((type) => (
+          {providerTypes.map((type) => (
             <button
               key={type.value}
               type="button"
