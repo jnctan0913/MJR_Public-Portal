@@ -29,6 +29,47 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'serviceProvider',
+      title: 'Service Provider',
+      type: 'object',
+      description: 'Information about the clinic or telehealth service provider',
+      fields: [
+        {
+          name: 'type',
+          title: 'Provider Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Clinic', value: 'clinic' },
+              { title: 'Telehealth Service', value: 'telehealth_service' },
+            ],
+            layout: 'radio',
+          },
+          initialValue: 'clinic',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'website',
+          title: 'Website URL',
+          type: 'url',
+          description: 'Official website (for telehealth services, this will be the clickable link)',
+          validation: (Rule) => Rule.uri({
+            scheme: ['http', 'https'],
+          }),
+        },
+        {
+          name: 'clinicPageUrl',
+          title: 'Clinic Page URL',
+          type: 'url',
+          description: 'Link to the clinic\'s detailed page (only for physical clinics)',
+          hidden: ({ parent }) => parent?.type === 'telehealth_service',
+          validation: (Rule) => Rule.uri({
+            scheme: ['http', 'https'],
+          }),
+        },
+      ],
+    }),
+    defineField({
       name: 'area',
       title: 'Area in Singapore',
       type: 'string',
@@ -185,47 +226,6 @@ export default defineType({
       type: 'text',
       rows: 4,
       description: 'Brief description of the clinic',
-    }),
-    defineField({
-      name: 'serviceProvider',
-      title: 'Service Provider',
-      type: 'object',
-      description: 'Information about the clinic or telehealth service provider',
-      fields: [
-        {
-          name: 'type',
-          title: 'Provider Type',
-          type: 'string',
-          options: {
-            list: [
-              { title: 'Clinic', value: 'clinic' },
-              { title: 'Telehealth Service', value: 'telehealth_service' },
-            ],
-            layout: 'radio',
-          },
-          initialValue: 'clinic',
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: 'website',
-          title: 'Website URL',
-          type: 'url',
-          description: 'Official website (for telehealth services, this will be the clickable link)',
-          validation: (Rule) => Rule.uri({
-            scheme: ['http', 'https'],
-          }),
-        },
-        {
-          name: 'clinicPageUrl',
-          title: 'Clinic Page URL',
-          type: 'url',
-          description: 'Link to the clinic\'s detailed page (only for physical clinics)',
-          hidden: ({ parent }) => parent?.type === 'telehealth_service',
-          validation: (Rule) => Rule.uri({
-            scheme: ['http', 'https'],
-          }),
-        },
-      ],
     }),
     defineField({
       name: 'doctors',
