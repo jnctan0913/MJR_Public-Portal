@@ -150,23 +150,6 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
             </p>
           </div>
 
-          {/* Services */}
-          {clinic.services && clinic.services.length > 0 && (
-            <div className="mb-4">
-              <h4 className="text-sm font-semibold text-dksh-black mb-2 font-poppins">Services</h4>
-              <div className="flex flex-wrap gap-2">
-                {clinic.services.map((service, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-dksh-pale-blue text-dksh-dark-blue text-xs md:text-sm rounded-full"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Operating Hours */}
           <div className="mb-4">
             <h4 className="text-sm font-semibold text-dksh-black mb-2 font-poppins">Operating Hours</h4>
