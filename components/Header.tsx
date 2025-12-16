@@ -73,7 +73,11 @@ export default function Header() {
                 onClick={() => {
                   const bmiSection = document.getElementById('bmi-section')
                   if (bmiSection) {
+                    // If BMI section exists on current page, scroll to it
                     bmiSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  } else {
+                    // If BMI section doesn't exist, navigate to home page with hash
+                    window.location.href = '/#bmi-section'
                   }
                 }}
                 className="h-[33px] px-3 md:px-6 bg-white border border-[#c6c6c6] rounded-button text-dksh-dark-gray text-xs md:text-sm font-bold font-poppins hover:bg-dksh-off-white hover:border-dksh-red transition-all duration-300 whitespace-nowrap"
@@ -194,8 +198,12 @@ export default function Header() {
               onClick={() => {
                 const bmiSection = document.getElementById('bmi-section')
                 if (bmiSection) {
+                  // If BMI section exists on current page, scroll to it
                   bmiSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
                   setMobileMenuOpen(false)
+                } else {
+                  // If BMI section doesn't exist, navigate to home page with hash
+                  window.location.href = '/#bmi-section'
                 }
               }}
               className="w-full px-4 py-3 bg-white border-2 border-dksh-red rounded-button text-dksh-red text-base font-bold font-poppins hover:bg-dksh-red hover:text-white transition-all duration-300 min-h-[44px] touch-manipulation"

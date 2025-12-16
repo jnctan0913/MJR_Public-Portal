@@ -1,23 +1,25 @@
 import Link from 'next/link'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export default function PrivacyStatementPage() {
   return (
-    <main className="min-h-screen bg-white relative">
-      {/* Close Button */}
-      <div className="sticky top-4 z-50 max-w-[1200px] mx-auto px-8 pt-4">
-        <div className="flex justify-end items-center">
-          <Link 
-            href="/"
-            className="w-10 h-10 flex items-center justify-center bg-gray-200 hover:bg-dksh-red text-dksh-black hover:text-white rounded-full transition-all duration-300 shadow-md"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </Link>
-        </div>
+    <main className="min-h-screen bg-white overflow-x-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-dksh-red text-white px-4 py-2 rounded"
+      >
+        Skip to main content
+      </a>
+
+      {/* Header */}
+      <div className="fixed top-0 z-50 w-full">
+        <Header />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-8 py-8 pb-16">
+      {/* Main Content */}
+      <div id="main-content" className="pt-[134px] md:pt-[148px] lg:pt-[155px]">
+        <div className="max-w-[1200px] mx-auto px-8 py-8 pb-16">
         <h1 className="text-4xl font-bold text-dksh-black mb-8 font-poppins">Privacy Statement</h1>
         
         <div className="space-y-6 text-base text-dksh-black font-poppins leading-relaxed">
@@ -184,7 +186,11 @@ export default function PrivacyStatementPage() {
             </p>
           </div>
         </div>
+        </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </main>
   )
 }

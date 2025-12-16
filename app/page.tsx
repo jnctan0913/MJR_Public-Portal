@@ -16,9 +16,22 @@ export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   useEffect(() => {
-    // Scroll to top on page load/reload for all platforms
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-    
+    // Check if there's a hash in the URL
+    const hash = window.location.hash
+
+    if (hash === '#bmi-section') {
+      // If navigating to BMI section, scroll to it after a short delay
+      setTimeout(() => {
+        const bmiSection = document.getElementById('bmi-section')
+        if (bmiSection) {
+          bmiSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    } else {
+      // Otherwise, scroll to top on page load/reload for all platforms
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    }
+
     // Also prevent scroll restoration on refresh
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual'

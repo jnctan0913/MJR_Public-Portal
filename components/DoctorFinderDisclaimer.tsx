@@ -4,7 +4,7 @@ export default function DoctorFinderDisclaimer() {
   return (
     <section className="relative py-6 md:py-8 bg-gray-50 border-t border-gray-200 z-10">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-[1075px] mx-auto">
           <h3 className="text-sm md:text-base font-semibold text-dksh-black mb-3 font-poppins">
             Disclaimer:
           </h3>
