@@ -6,10 +6,17 @@ export interface ClinicAddress {
   country: string
 }
 
+export type PhoneContactType = 'whatsapp' | 'phone'
+
+export interface PhoneNumber {
+  type: PhoneContactType
+  number: string
+  label?: string
+}
+
 export interface ClinicContact {
-  phone: string
+  phoneNumbers: PhoneNumber[]
   email: string
-  fax?: string
 }
 
 export interface ClinicLocation {

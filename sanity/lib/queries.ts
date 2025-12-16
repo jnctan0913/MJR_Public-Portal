@@ -10,7 +10,14 @@ export const clinicsQuery = groq`
     area,
     address,
     location,
-    contact,
+    contact {
+      phoneNumbers[] {
+        type,
+        number,
+        label
+      },
+      email
+    },
     hours,
     image,
     description,
@@ -40,7 +47,14 @@ export const featuredClinicsQuery = groq`
     area,
     address,
     location,
-    contact,
+    contact {
+      phoneNumbers[] {
+        type,
+        number,
+        label
+      },
+      email
+    },
     hours,
     image,
     description,
@@ -70,7 +84,14 @@ export const clinicBySlugQuery = groq`
     area,
     address,
     location,
-    contact,
+    contact {
+      phoneNumbers[] {
+        type,
+        number,
+        label
+      },
+      email
+    },
     hours,
     image,
     description,

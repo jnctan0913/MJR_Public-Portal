@@ -135,21 +135,63 @@ export default defineType({
       type: 'object',
       fields: [
         {
-          name: 'phone',
-          title: 'Phone Number',
-          type: 'string',
-          validation: (Rule) => Rule.required(),
+          name: 'phoneNumbers',
+          title: 'Phone Numbers',
+          type: 'array',
+          description: 'Add one or more phone numbers with contact type',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'type',
+                  title: 'Contact Type',
+                  type: 'string',
+                  options: {
+                    list: [
+                      { title: 'WhatsApp', value: 'whatsapp' },
+                      { title: 'Phone Call', value: 'phone' },
+                    ],
+                    layout: 'radio',
+                  },
+                  validation: (Rule) => Rule.required(),
+                },
+                {
+                  name: 'number',
+                  title: 'Phone Number',
+                  type: 'string',
+                  description: 'Include country code (e.g., +6591234567)',
+                  validation: (Rule) => Rule.required(),
+                },
+                {
+                  name: 'label',
+                  title: 'Label (optional)',
+                  type: 'string',
+                  description: 'e.g., "Main Line", "After Hours"',
+                },
+              ],
+              preview: {
+                select: {
+                  type: 'type',
+                  number: 'number',
+                  label: 'label',
+                },
+                prepare({ type, number, label }) {
+                  return {
+                    title: `${type === 'whatsapp' ? '📱 WhatsApp' : '☎️ Phone'}: ${number}`,
+                    subtitle: label || '',
+                  };
+                },
+              },
+            },
+          ],
+          validation: (Rule) => Rule.required().min(1).error('At least one phone number is required'),
         },
         {
           name: 'email',
           title: 'Email Address',
           type: 'string',
           validation: (Rule) => Rule.required().email(),
-        },
-        {
-          name: 'fax',
-          title: 'Fax Number',
-          type: 'string',
         },
       ],
     }),
