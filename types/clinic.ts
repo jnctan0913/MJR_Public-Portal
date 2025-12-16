@@ -66,7 +66,6 @@ export interface Clinic {
   contact: ClinicContact
   location: ClinicLocation
   hours: ClinicHours
-  services: string[]
   featured: boolean
   image?: SanityImage
   description?: string

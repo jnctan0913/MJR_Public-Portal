@@ -12,7 +12,6 @@ export const clinicsQuery = groq`
     location,
     contact,
     hours,
-    services,
     image,
     description,
     serviceProvider {
@@ -44,7 +43,6 @@ export const featuredClinicsQuery = groq`
     location,
     contact,
     hours,
-    services,
     image,
     description,
     serviceProvider {
@@ -76,7 +74,6 @@ export const clinicBySlugQuery = groq`
     location,
     contact,
     hours,
-    services,
     image,
     description,
     serviceProvider {

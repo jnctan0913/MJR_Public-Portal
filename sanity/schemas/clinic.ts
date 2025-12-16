@@ -162,13 +162,6 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'services',
-      title: 'Services Offered',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'List of services available at this clinic',
-    }),
-    defineField({
       name: 'image',
       title: 'Clinic Image',
       type: 'image',
