@@ -110,10 +110,24 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
           )}
 
           {/* Address - Only show for non-telehealth-only services */}
-          {!isTelehealthService && (
+          {!isTelehealthService && googleMapsUrl && (
             <div className="mb-4">
               <h4 className="text-sm font-semibold text-dksh-black mb-1 font-poppins">Address</h4>
-              <p className="text-sm md:text-base text-dksh-gray">{address}</p>
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 text-sm md:text-base text-dksh-gray hover:text-dksh-red transition-colors group cursor-pointer"
+              >
+                <svg 
+                  className="w-5 h-5 flex-shrink-0 text-red-500 group-hover:text-dksh-red transition-colors mt-0.5" 
+                  fill="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span className="flex-1">{address}</span>
+              </a>
             </div>
           )}
 
@@ -213,29 +227,17 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
               Visit Provider Page
             </a>
           ) : (
-            // Physical Clinic - Show both clinic page and Google Maps links
-            <div className="space-y-2">
-              {clinic.serviceProvider?.clinicPageUrl && (
-                <a
-                  href={clinic.serviceProvider.clinicPageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full px-4 py-3 bg-dksh-dark-blue text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-opacity-90 transition-colors duration-300"
-                >
-                  View Clinic Page
-                </a>
-              )}
-              {googleMapsUrl && (
-                <a
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full px-4 py-3 bg-dksh-red text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
-                >
-                  View on Google Maps
-                </a>
-              )}
-            </div>
+            // Physical Clinic - Show clinic page link only (Google Maps moved to address)
+            clinic.serviceProvider?.clinicPageUrl && (
+              <a
+                href={clinic.serviceProvider.clinicPageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full px-4 py-3 bg-dksh-red text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
+              >
+                View Clinic Page
+              </a>
+            )
           )}
         </div>
       </div>
