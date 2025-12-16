@@ -16,7 +16,6 @@ export const clinicsQuery = groq`
     description,
     serviceProvider {
       type,
-      logo,
       website,
       clinicPageUrl
     },
@@ -47,7 +46,6 @@ export const featuredClinicsQuery = groq`
     description,
     serviceProvider {
       type,
-      logo,
       website,
       clinicPageUrl
     },
@@ -78,7 +76,6 @@ export const clinicBySlugQuery = groq`
     description,
     serviceProvider {
       type,
-      logo,
       website,
       clinicPageUrl
     },

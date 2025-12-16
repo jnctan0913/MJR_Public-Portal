@@ -163,8 +163,9 @@ export default defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Clinic Image',
+      title: 'Clinic/Provider Image',
       type: 'image',
+      description: 'For physical clinics: upload clinic building photo. For telehealth: upload provider logo',
       options: {
         hotspot: true,
       },
@@ -176,6 +177,7 @@ export default defineType({
           description: 'Important for SEO and accessibility',
         },
       ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
@@ -203,22 +205,6 @@ export default defineType({
           },
           initialValue: 'clinic',
           validation: (Rule) => Rule.required(),
-        },
-        {
-          name: 'logo',
-          title: 'Provider Logo',
-          type: 'image',
-          description: 'Logo of the clinic or telehealth service',
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text',
-            },
-          ],
         },
         {
           name: 'website',

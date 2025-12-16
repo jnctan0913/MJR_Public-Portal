@@ -40,7 +40,6 @@ export interface SanityImage {
 
 export interface ServiceProvider {
   type: ServiceProviderType
-  logo?: SanityImage
   website?: string
   clinicPageUrl?: string
 }

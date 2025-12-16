@@ -17,12 +17,11 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
   const googleMapsUrl = getGoogleMapsUrl(clinic)
 
   const isTelehealthService = clinic.serviceProvider?.type === 'telehealth_service'
-  const hasProviderLogo = !!clinic.serviceProvider?.logo
 
   return (
     <>
       <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
-        {/* Clinic Image with Provider Logo Overlay */}
+        {/* Clinic/Provider Image */}
         <div className="relative">
           {clinic.image && (
             <div className="relative w-full h-48 bg-gray-100">
@@ -30,24 +29,9 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
                 src={urlFor(clinic.image).width(600).height(400).url()}
                 alt={clinic.image.alt || clinic.name}
                 fill
-                className="object-cover"
+                className={isTelehealthService ? "object-contain p-4" : "object-cover"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-            </div>
-          )}
-
-          {/* Provider Logo Overlay */}
-          {hasProviderLogo && (
-            <div className="absolute top-3 left-3 bg-white rounded-lg shadow-md p-2">
-              <div className="relative w-16 h-16">
-                <Image
-                  src={urlFor(clinic.serviceProvider!.logo!).width(100).height(100).url()}
-                  alt={clinic.serviceProvider!.logo!.alt || 'Provider logo'}
-                  fill
-                  className="object-contain"
-                  sizes="64px"
-                />
-              </div>
             </div>
           )}
         </div>
@@ -192,17 +176,15 @@ export default function ClinicCard({ clinic }: ClinicCardProps) {
 
           {/* Action Buttons - Conditional based on service provider type */}
           {isTelehealthService ? (
-            // Telehealth Service - Link to their website
-            clinic.serviceProvider?.website && (
-              <a
-                href={clinic.serviceProvider.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-4 py-3 bg-dksh-red text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
-              >
-                Visit Website
-              </a>
-            )
+            // Telehealth Service - Link to their website or provider page
+            <a
+              href={clinic.serviceProvider?.website || '#'}
+              target={clinic.serviceProvider?.website ? "_blank" : undefined}
+              rel={clinic.serviceProvider?.website ? "noopener noreferrer" : undefined}
+              className="block w-full px-4 py-3 bg-dksh-red text-white text-center text-sm md:text-base font-semibold font-poppins rounded-button hover:bg-dksh-dark-red transition-colors duration-300"
+            >
+              Visit Provider Page
+            </a>
           ) : (
             // Physical Clinic - Show both clinic page and Google Maps links
             <div className="space-y-2">
