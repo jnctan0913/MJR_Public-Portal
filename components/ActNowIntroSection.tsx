@@ -4,7 +4,7 @@ export default function ActNowIntroSection() {
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-20">
         <div className="max-w-[1075px] mx-auto">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-dksh-black font-poppins mb-6">
-            It is time for a weight-loss discussion with your doctor
+            Start a weight-loss discussion with your doctor
           </h2>
           <div className="space-y-4 text-base md:text-lg text-dksh-gray leading-relaxed">
             <p>
