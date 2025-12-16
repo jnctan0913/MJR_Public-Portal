@@ -82,10 +82,6 @@ export default function ClinicFilters({ onFilterChange }: ClinicFiltersProps) {
     <div className="mb-8 space-y-6">
       {/* Location Search Section */}
       <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200">
-        <h3 className="text-xl font-bold text-dksh-black font-poppins mb-4">
-          Find Clinics Near You
-        </h3>
-        
         {/* Postal Code / Address Input */}
         <div className="flex flex-col md:flex-row gap-3 mb-3">
           <input
