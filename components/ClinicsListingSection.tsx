@@ -28,20 +28,30 @@ export default function ClinicsListingSection({
     return clinics.filter((clinic) => {
       // Filter by provider type
       if (filters.providerType !== 'all') {
-        if (clinic.serviceProvider?.type !== filters.providerType) {
-          return false
+        // Skip clinics without serviceProvider data
+        if (!clinic.serviceProvider || !clinic.serviceProvider.type) {
+          return false;
+        }
+        
+        if (clinic.serviceProvider.type !== filters.providerType) {
+          return false;
         }
       }
 
       // Filter by area (skip if clinic is telehealth-only)
-      if (filters.area !== 'all' && clinic.area !== filters.area) {
-        // Telehealth-only services don't have an area, so skip area filter for them
-        if (clinic.serviceProvider?.type !== 'telehealth_service') {
-          return false
+      if (filters.area !== 'all') {
+        // Telehealth-only services don't have an area, so always show them
+        if (clinic.serviceProvider?.type === 'telehealth_service') {
+          return true;
+        }
+        
+        // For physical clinics, check area
+        if (clinic.area !== filters.area) {
+          return false;
         }
       }
 
-      return true
+      return true;
     })
   }, [clinics, filters])
 

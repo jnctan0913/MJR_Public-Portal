@@ -12,13 +12,11 @@ export default function ClinicFilters({ onFilterChange }: ClinicFiltersProps) {
   const [selectedArea, setSelectedArea] = useState<ClinicArea | 'all'>('all')
 
   const handleTypeChange = (type: ServiceProviderType | 'all') => {
-    console.log('Provider type changed to:', type)
     setSelectedType(type)
     onFilterChange({ providerType: type, area: selectedArea })
   }
 
   const handleAreaChange = (area: ClinicArea | 'all') => {
-    console.log('Area changed to:', area)
     setSelectedArea(area)
     onFilterChange({ providerType: selectedType, area })
   }
