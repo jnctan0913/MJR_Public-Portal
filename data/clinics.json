@@ -1,0 +1,111 @@
+{
+  "clinics": [
+    {
+      "id": "clinic-1",
+      "name": "DKSH Healthcare Clinic - Central",
+      "address": {
+        "street": "123 Orchard Road",
+        "unit": "#05-67",
+        "city": "Singapore",
+        "postalCode": "238858",
+        "country": "Singapore"
+      },
+      "contact": {
+        "phone": "+65 6123 4567",
+        "email": "central@dkshhealthcare.com",
+        "fax": "+65 6123 4568"
+      },
+      "location": {
+        "latitude": 1.3048,
+        "longitude": 103.8318
+      },
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 1:00 PM",
+        "sunday": "Closed"
+      },
+      "services": [
+        "Obesity Management",
+        "Weight Loss Consultation",
+        "Nutritional Counseling",
+        "Medical Weight Management"
+      ],
+      "featured": true
+    },
+    {
+      "id": "clinic-2",
+      "name": "DKSH Healthcare Clinic - East",
+      "address": {
+        "street": "456 Bedok North Street 1",
+        "unit": "#03-12",
+        "city": "Singapore",
+        "postalCode": "469662",
+        "country": "Singapore"
+      },
+      "contact": {
+        "phone": "+65 6234 5678",
+        "email": "east@dkshhealthcare.com",
+        "fax": "+65 6234 5679"
+      },
+      "location": {
+        "latitude": 1.3291,
+        "longitude": 103.9318
+      },
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 1:00 PM",
+        "sunday": "Closed"
+      },
+      "services": [
+        "Obesity Management",
+        "Weight Loss Consultation",
+        "Medical Weight Management"
+      ],
+      "featured": false
+    },
+    {
+      "id": "clinic-3",
+      "name": "DKSH Healthcare Clinic - West",
+      "address": {
+        "street": "789 Jurong West Street 64",
+        "unit": "#02-45",
+        "city": "Singapore",
+        "postalCode": "640789",
+        "country": "Singapore"
+      },
+      "contact": {
+        "phone": "+65 6345 6789",
+        "email": "west@dkshhealthcare.com",
+        "fax": "+65 6345 6780"
+      },
+      "location": {
+        "latitude": 1.3403,
+        "longitude": 103.7090
+      },
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 1:00 PM",
+        "sunday": "Closed"
+      },
+      "services": [
+        "Obesity Management",
+        "Weight Loss Consultation",
+        "Nutritional Counseling"
+      ],
+      "featured": false
+    }
+  ],
+  "lastUpdated": "2024-12-16"
+}

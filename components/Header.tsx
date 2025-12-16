@@ -2,16 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Header() {
+  const pathname = usePathname()
   const [activeLink, setActiveLink] = useState('home')
   const [hideGlobalNav, setHideGlobalNav] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navLinks = [
-    { id: 'home', label: 'Now We Know' },
-    { id: 'understanding', label: 'Understanding obesity' },
-    { id: 'act-now', label: 'Act Now!' },
+    { id: 'home', label: 'Now We Know', href: '/' },
+    { id: 'understanding', label: 'Understanding obesity', href: '/#understanding' },
+    { id: 'act-now', label: 'Act Now!', href: '/act-now' },
   ]
 
   useEffect(() => {
@@ -77,11 +80,12 @@ export default function Header() {
               >
                 BMI Calculator
               </button>
-              <button
-                className="h-[33px] px-3 md:px-6 bg-dksh-red border border-dksh-red rounded-button text-white text-xs md:text-sm font-bold font-poppins hover:bg-dksh-dark-red hover:border-dksh-dark-red transition-all duration-300 shadow-sm whitespace-nowrap"
+              <Link
+                href="/act-now"
+                className="h-[33px] px-3 md:px-6 bg-dksh-red border border-dksh-red rounded-button text-white text-xs md:text-sm font-bold font-poppins hover:bg-dksh-dark-red hover:border-dksh-dark-red transition-all duration-300 shadow-sm whitespace-nowrap flex items-center justify-center"
               >
                 Talk to A Doctor
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -134,26 +138,23 @@ export default function Header() {
           {/* Desktop Primary Navigation */}
           <nav className="hidden lg:flex h-[72px]">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.id}
-                href={`#${link.id}`}
-                onClick={(e) => {
-                  e.preventDefault()
-                  setActiveLink(link.id)
-                }}
+                href={link.href}
+                onClick={() => setActiveLink(link.id)}
                 className={`
                   px-3 flex items-center justify-center text-base font-poppins transition-colors duration-300 relative
-                  ${activeLink === link.id
+                  ${(pathname === link.href || (link.id === 'home' && pathname === '/'))
                     ? 'font-bold text-dksh-black'
                     : 'font-normal text-dksh-black hover:bg-dksh-off-white/70'
                   }
                 `}
               >
                 {link.label}
-                {activeLink === link.id && (
+                {(pathname === link.href || (link.id === 'home' && pathname === '/')) && (
                   <span className="absolute bottom-0 left-3 right-3 h-[3px] bg-dksh-red"></span>
                 )}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -167,25 +168,24 @@ export default function Header() {
       >
         <nav className="px-4 py-4 space-y-2">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.id}
-              href={`#${link.id}`}
-              onClick={(e) => {
-                e.preventDefault()
+              href={link.href}
+              onClick={() => {
                 setActiveLink(link.id)
                 setMobileMenuOpen(false)
               }}
               className={`block px-4 py-3 rounded-lg font-poppins transition-colors min-h-[44px] touch-manipulation relative ${
-                activeLink === link.id
+                (pathname === link.href || (link.id === 'home' && pathname === '/'))
                   ? 'font-bold text-dksh-black'
                   : 'font-normal text-dksh-black hover:bg-dksh-off-white/70'
               }`}
             >
               {link.label}
-              {activeLink === link.id && (
+              {(pathname === link.href || (link.id === 'home' && pathname === '/')) && (
                 <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-dksh-red rounded-r"></span>
               )}
-            </a>
+            </Link>
           ))}
 
           {/* Mobile Action Buttons */}
@@ -202,12 +202,13 @@ export default function Header() {
             >
               BMI Calculator
             </button>
-            <button
+            <Link
+              href="/act-now"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full px-4 py-3 bg-dksh-red rounded-button text-white text-base font-bold font-poppins hover:bg-dksh-dark-red transition-all duration-300 min-h-[44px] touch-manipulation"
+              className="block w-full px-4 py-3 bg-dksh-red rounded-button text-white text-base font-bold font-poppins hover:bg-dksh-dark-red transition-all duration-300 min-h-[44px] touch-manipulation text-center"
             >
               Talk to A Doctor
-            </button>
+            </Link>
           </div>
         </nav>
       </div>
