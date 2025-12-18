@@ -11,7 +11,10 @@ interface HeroSectionProps {
 export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [videoKey, setVideoKey] = useState(0)
+  const [showEntranceVideo, setShowEntranceVideo] = useState(true)
+  const [entranceVideoEnded, setEntranceVideoEnded] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const entranceVideoRef = useRef<HTMLVideoElement>(null)
 
   const handlePlayClick = () => {
     setIsVideoPlaying(true)
@@ -25,6 +28,20 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
     setIsVideoPlaying(false)
     onVideoPlay?.(false)
   }
+
+  const handleEntranceVideoEnd = () => {
+    setEntranceVideoEnded(true)
+    setShowEntranceVideo(true) // Keep video visible
+  }
+
+  useEffect(() => {
+    // Auto-play entrance video on mount
+    if (entranceVideoRef.current) {
+      entranceVideoRef.current.play().catch(error => {
+        console.log('Autoplay prevented:', error)
+      })
+    }
+  }, [])
 
   useEffect(() => {
     if (!isVideoPlaying) return
@@ -77,7 +94,7 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
           isVideoPlaying ? '-translate-x-1/2' : 'translate-x-0'
         }`}
       >
-        {/* First Slide - Hero Image */}
+        {/* First Slide - Entrance Video or Hero Image */}
         <div className="relative w-1/2 h-full overflow-hidden">
           {/* Mobile Hero Image */}
           <div className="absolute inset-0 w-full md:hidden pointer-events-none">
@@ -90,18 +107,19 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
               sizes="100vw"
             />
           </div>
-          
-          {/* Desktop Hero Image */}
-          <div className="absolute inset-0 hidden md:block pointer-events-none">
-            <Image
-              src="/images/hero-resistance-bands.png"
-              alt="Woman with obesity with resistance bands holding her in place attached to the words 'The Body Can Resist Weight Loss'"
-              fill
-              className="object-cover w-full h-full"
-              priority
-              sizes="50vw"
-            />
-          </div>
+
+          {/* Desktop Entrance Video */}
+          {showEntranceVideo && (
+            <video
+              ref={entranceVideoRef}
+              className="absolute inset-0 hidden md:block w-full h-full object-cover"
+              playsInline
+              muted
+              onEnded={handleEntranceVideoEnd}
+            >
+              <source src="/images/Hero Video.mp4" type="video/mp4" />
+            </video>
+          )}
 
           {/* Content Overlay */}
           <div className="relative w-full md:max-w-[1600px] md:mx-auto md:px-10 lg:px-20 h-full flex items-center z-10 pointer-events-none">
@@ -110,15 +128,27 @@ export default function HeroSection({ onVideoPlay }: HeroSectionProps = {}) {
             </div>
           </div>
 
-          {/* Play Button positioned next to "Loss" - scales with viewport to maintain position */}
+          {/* Mobile Play Button - always shows */}
           <button
             onClick={handlePlayClick}
             type="button"
-            className="absolute top-[28%] right-[31%] w-[calc(100vw*48/375)] h-[calc(100vw*48/375)] md:top-[47.5%] md:right-[calc(100vw*320/1600)] lg:right-[calc(100vw*304/1600)] xl:right-[calc(100vw*328/1600)] md:w-[calc(100vw*64/1600)] md:h-[calc(100vw*64/1600)] rounded-full bg-dksh-yellow flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl group z-50 cursor-pointer touch-manipulation pointer-events-auto"
+            className="md:hidden absolute top-[28%] right-[31%] w-[calc(100vw*48/375)] h-[calc(100vw*48/375)] rounded-full bg-dksh-yellow flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl group z-50 cursor-pointer touch-manipulation pointer-events-auto"
             aria-label="Play video"
           >
-            <div className="w-0 h-0 border-t-[calc(100vw*8/375)] border-t-transparent border-l-[calc(100vw*14/375)] border-l-white border-b-[calc(100vw*8/375)] border-b-transparent ml-1 md:border-t-[calc(100vw*12/1600)] md:border-l-[calc(100vw*20/1600)] md:border-b-[calc(100vw*12/1600)] group-hover:border-l-dksh-red transition-colors duration-300"></div>
+            <div className="w-0 h-0 border-t-[calc(100vw*8/375)] border-t-transparent border-l-[calc(100vw*14/375)] border-l-white border-b-[calc(100vw*8/375)] border-b-transparent ml-1 group-hover:border-l-dksh-red transition-colors duration-300"></div>
           </button>
+
+          {/* Desktop Play Button - only shows after entrance video ends */}
+          {entranceVideoEnded && (
+            <button
+              onClick={handlePlayClick}
+              type="button"
+              className="hidden md:flex absolute top-[47.5%] right-[calc(100vw*280/1600)] lg:right-[calc(100vw*264/1600)] xl:right-[calc(100vw*288/1600)] w-[calc(100vw*64/1600)] h-[calc(100vw*64/1600)] rounded-full bg-dksh-yellow items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300 shadow-xl group z-50 cursor-pointer touch-manipulation pointer-events-auto"
+              aria-label="Play video"
+            >
+              <div className="w-0 h-0 border-t-[calc(100vw*12/1600)] border-t-transparent border-l-[calc(100vw*20/1600)] border-l-white border-b-[calc(100vw*12/1600)] border-b-transparent ml-1 group-hover:border-l-dksh-red transition-colors duration-300"></div>
+            </button>
+          )}
         </div>
 
         {/* Second Slide - Video */}
