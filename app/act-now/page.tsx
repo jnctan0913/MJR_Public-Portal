@@ -14,10 +14,6 @@ export const metadata: Metadata = {
     'Take the next step towards a healthier you. Find a qualified doctor near you who can help with obesity management and weight loss guidance.',
 }
 
-// Force dynamic rendering - fetch fresh data on every request
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
-
 export default async function ActNowPage() {
   // Fetch clinics from Sanity
   const clinics = await getAllClinics()
