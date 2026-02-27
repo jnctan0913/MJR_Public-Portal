@@ -6,6 +6,9 @@ const basePath = isGithubPages && !isUserOrOrgPages ? `/${repoName}` : ''
 
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    serverActions: false,
+  },
   output: isGithubPages ? 'export' : undefined,
   trailingSlash: isGithubPages,
   basePath,
@@ -23,6 +26,5 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-
 
 
